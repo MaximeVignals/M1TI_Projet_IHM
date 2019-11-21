@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -11,41 +12,78 @@
     <children>
       <AnchorPane fx:id="pane_homeTeam" prefHeight="720.0" prefWidth="320.0">
          <children>
-            <AnchorPane fx:id="pane_home_header" prefHeight="105.0" prefWidth="320.0">
+            <AnchorPane fx:id="pane_home_header" prefHeight="5.0" prefWidth="320.0">
                <children>
                   <TextField alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Equipe 1">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <TextField alignment="CENTER" layoutY="62.0" prefHeight="19.0" prefWidth="320.0" text="Leo 'Traillette" />
+                  <TextField alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur 1" />
                </children></AnchorPane>
             <Separator layoutY="465.0" prefHeight="5.0" prefWidth="320.0" />
-            <TableView layoutY="87.0" prefHeight="636.0" prefWidth="320.0">
+            <TableView fx:id="table_home_team" layoutY="81.0" prefHeight="384.0" prefWidth="320.0">
               <columns>
-                <TableColumn fx:id="col_Num1" prefWidth="33.0" text="N°" />
-                <TableColumn fx:id="col_Nom1" prefWidth="88.0" text="Nom" />
-                  <TableColumn fx:id="col_Prenom1" prefWidth="125.0" text="Prénom" />
+                <TableColumn fx:id="col_Nb_home" prefWidth="33.0" text="N°" />
+                <TableColumn fx:id="col_Nom_home" prefWidth="88.0" text="Nom" />
+                  <TableColumn fx:id="col_Prenom_home" prefWidth="125.0" text="Prénom" />
               </columns>
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_visitorTeam" layoutX="960.0" layoutY="3.0" prefHeight="720.0" prefWidth="320.0">
+      <AnchorPane fx:id="pane_center" layoutX="320.0" prefHeight="720.0" prefWidth="640.0">
          <children>
-            <AnchorPane prefHeight="130.0" prefWidth="320.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="pane_center" layoutX="320.0" layoutY="2.0" prefHeight="720.0" prefWidth="640.0">
-         <children>
-            <Button fx:id="btn_startPause" layoutX="37.0" layoutY="88.0" mnemonicParsing="false" text="Lancer / Pause" />
-            <Button fx:id="btn_reinitialiser" layoutX="496.0" layoutY="88.0" mnemonicParsing="false" text="Réinitialiser" />
-            <Button fx:id="btn_tpsMort" layoutX="272.0" layoutY="88.0" mnemonicParsing="false" text="Temps-Mort" />
-            <TextField alignment="CENTER" layoutX="1.0" prefHeight="60.0" prefWidth="71.0" text="13">
+            <Button fx:id="btn_startPause" layoutX="106.0" layoutY="109.0" mnemonicParsing="false" prefWidth="125.0" text="Lancer / Pause" />
+            <Button fx:id="btn_reinitialiser" layoutX="409.0" layoutY="109.0" mnemonicParsing="false" prefWidth="125.0" text="Réinitialiser" />
+            <Button fx:id="btn_tpsMort" layoutX="272.0" layoutY="109.0" mnemonicParsing="false" text="Temps-Mort" />
+            <Label fx:id="label_score_home" alignment="CENTER" layoutX="14.0" layoutY="18.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
-            </TextField>
-            <Text layoutX="306.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chrono" />
+            </Label>
+            <Label alignment="CENTER" layoutX="231.0" layoutY="39.0" prefHeight="43.0" prefWidth="178.0" text="00:00:00">
+               <font>
+                  <Font size="35.0" />
+               </font></Label>
+            <Label fx:id="label_score_visitor" alignment="CENTER" layoutX="530.0" layoutY="18.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Separator layoutY="464.0" prefWidth="640.0" />
+            <Label alignment="CENTER" layoutX="268.0" layoutY="6.0" prefHeight="25.0" prefWidth="105.0" text="Mi-Temps 1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="45.0" layoutY="226.0" mnemonicParsing="false" prefWidth="120.0" text="Tir" />
+            <Button layoutX="45.0" layoutY="272.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
+            <Button layoutX="471.0" layoutY="226.0" mnemonicParsing="false" prefWidth="120.0" text="Tir" />
+            <Button layoutX="470.0" layoutY="272.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
+            <Button layoutX="45.0" layoutY="324.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
+            <Button layoutX="470.0" layoutY="324.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
          </children></AnchorPane>
+      <AnchorPane fx:id="pane_visitorTeam" layoutX="960.0" prefHeight="720.0" prefWidth="320.0">
+         <children>
+            <AnchorPane fx:id="pane_visitor_header" prefHeight="5.0" prefWidth="320.0">
+               <children>
+                  <TextField alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Equipe 2">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </TextField>
+                  <TextField alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur 2" />
+               </children>
+            </AnchorPane>
+            <Separator layoutY="465.0" prefHeight="5.0" prefWidth="320.0" />
+            <TableView fx:id="table_visitor_team" layoutY="81.0" prefHeight="384.0" prefWidth="320.0">
+               <columns>
+                  <TableColumn fx:id="col_Nb_visitor" prefWidth="33.0" text="N°" />
+                  <TableColumn fx:id="col_Nom_visitor" prefWidth="88.0" text="Nom" />
+                  <TableColumn fx:id="col_Prenom_visitor" prefWidth="125.0" text="Prénom" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

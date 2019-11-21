@@ -10,7 +10,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -18,14 +22,44 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
     private Label label;
-    
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private AnchorPane pane_homeTeam;
+    @FXML
+    private AnchorPane pane_home_header;
+    @FXML
+    private TableView<?> table_home_team;
+    @FXML
+    private TableColumn<?, ?> col_Nb_home;
+    @FXML
+    private TableColumn<?, ?> col_Nom_home;
+    @FXML
+    private TableColumn<?, ?> col_Prenom_home;
+    @FXML
+    private AnchorPane pane_center;
+    @FXML
+    private Button btn_startPause;
+    @FXML
+    private Button btn_reinitialiser;
+    @FXML
+    private Button btn_tpsMort;
+    @FXML
+    private Label label_score_home;
+    @FXML
+    private Label label_score_visitor;
+    @FXML
+    private AnchorPane pane_visitorTeam;
+    @FXML
+    private AnchorPane pane_visitor_header;
+    @FXML
+    private TableView<?> table_visitor_team;
+    @FXML
+    private TableColumn<?, ?> col_Nb_visitor;
+    @FXML
+    private TableColumn<?, ?> col_Nom_visitor;
+    @FXML
+    private TableColumn<?, ?> col_Prenom_visitor;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
