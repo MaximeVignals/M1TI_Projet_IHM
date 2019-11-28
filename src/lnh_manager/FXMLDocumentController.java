@@ -60,10 +60,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<?, ?> col_Prenom_visitor;
     
+    //private Chrono myChrono = new Chrono;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void chronoPlayPause(ActionEvent event) {
+    }
     
 }

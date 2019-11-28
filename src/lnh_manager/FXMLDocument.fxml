@@ -29,11 +29,18 @@
                   <TableColumn fx:id="col_Prenom_home" prefWidth="125.0" text="Prénom" />
               </columns>
             </TableView>
+            <TableView fx:id="table_home_team1" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">
+               <columns>
+                  <TableColumn fx:id="col_Nb_home1" prefWidth="33.0" text="N°" />
+                  <TableColumn fx:id="col_Nom_home1" prefWidth="88.0" text="Nom" />
+                  <TableColumn fx:id="col_Prenom_home1" prefWidth="125.0" text="Prénom" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pane_center" layoutX="320.0" prefHeight="720.0" prefWidth="640.0">
          <children>
-            <Button fx:id="btn_startPause" layoutX="106.0" layoutY="109.0" mnemonicParsing="false" prefWidth="125.0" text="Lancer / Pause" />
+            <Button fx:id="btn_startPause" layoutX="106.0" layoutY="109.0" mnemonicParsing="false" onAction="#chronoPlayPause" prefWidth="125.0" text="Lancer / Pause" />
             <Button fx:id="btn_reinitialiser" layoutX="409.0" layoutY="109.0" mnemonicParsing="false" prefWidth="125.0" text="Réinitialiser" />
             <Button fx:id="btn_tpsMort" layoutX="272.0" layoutY="109.0" mnemonicParsing="false" text="Temps-Mort" />
             <Label fx:id="label_score_home" alignment="CENTER" layoutX="14.0" layoutY="18.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
@@ -41,7 +48,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="231.0" layoutY="39.0" prefHeight="43.0" prefWidth="178.0" text="00:00:00">
+            <Label alignment="CENTER" layoutX="231.0" layoutY="39.0" prefHeight="43.0" prefWidth="178.0" text="00:00">
                <font>
                   <Font size="35.0" />
                </font></Label>
@@ -60,8 +67,13 @@
             <Button layoutX="45.0" layoutY="272.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
             <Button layoutX="471.0" layoutY="226.0" mnemonicParsing="false" prefWidth="120.0" text="Tir" />
             <Button layoutX="470.0" layoutY="272.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
-            <Button layoutX="45.0" layoutY="324.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
-            <Button layoutX="470.0" layoutY="324.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
+            <Button layoutX="45.0" layoutY="318.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
+            <Button layoutX="470.0" layoutY="318.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
+            <TitledPane animated="false" layoutY="466.0" prefHeight="254.0" prefWidth="640.0" text="Historique des actions">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
          </children></AnchorPane>
       <AnchorPane fx:id="pane_visitorTeam" layoutX="960.0" prefHeight="720.0" prefWidth="320.0">
          <children>
@@ -81,6 +93,13 @@
                   <TableColumn fx:id="col_Nb_visitor" prefWidth="33.0" text="N°" />
                   <TableColumn fx:id="col_Nom_visitor" prefWidth="88.0" text="Nom" />
                   <TableColumn fx:id="col_Prenom_visitor" prefWidth="125.0" text="Prénom" />
+               </columns>
+            </TableView>
+            <TableView fx:id="table_home_team11" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">
+               <columns>
+                  <TableColumn fx:id="col_Nb_home11" prefWidth="33.0" text="N°" />
+                  <TableColumn fx:id="col_Nom_home11" prefWidth="88.0" text="Nom" />
+                  <TableColumn fx:id="col_Prenom_home11" prefWidth="136.0" text="Prénom" />
                </columns>
             </TableView>
          </children>
