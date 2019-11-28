@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -21,8 +22,12 @@ import javafx.scene.layout.AnchorPane;
  * @author mvignals
  */
 public class FXMLDocumentController implements Initializable {
+
+    Runnable chrono = new Chrono();
+    Thread tChrono = new Thread(chrono);
+    boolean ChronoStarted;
+    boolean ChronoPaused;
     
-    private Label label;
     @FXML
     private AnchorPane pane_homeTeam;
     @FXML
@@ -59,16 +64,48 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<?, ?> col_Nom_visitor;
     @FXML
     private TableColumn<?, ?> col_Prenom_visitor;
+    @FXML
+    private Label labelTemps;
+    @FXML
+    private TableView<?> table_home_team_out;
+    @FXML
+    private TableColumn<?, ?> col_Nb_home_out;
+    @FXML
+    private TableColumn<?, ?> col_Nom_home_out;
+    @FXML
+    private TableColumn<?, ?> col_Prenom_home_out;
+    @FXML
+    private TableView<?> table_visitor_team_out;
+    @FXML
+    private TableColumn<?, ?> col_Nb_visitor_out;
+    @FXML
+    private TableColumn<?, ?> col_Nom_visitor_out;
+    @FXML
+    private TableColumn<?, ?> col_Prenom_visitor_out;
     
-    //private Chrono myChrono = new Chrono;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ChronoStarted = false;
+        ChronoPaused = false;
     }    
 
     @FXML
-    private void chronoPlayPause(ActionEvent event) {
+    private int chronoPlayPause(MouseEvent event) {
+        if(!ChronoStarted){
+            ChronoStarted = true;
+            tChrono.start();
+            return 0;
+        }
+        if(ChronoPaused){
+            tChrono.resume();
+            ChronoPaused = false;
+        }else{
+            tChrono.suspend();
+            ChronoPaused = true;
+        }
+        return 0;
+        
     }
     
 }
