@@ -25,7 +25,6 @@ import javafx.scene.layout.AnchorPane;
 public class FXMLDocumentController implements Initializable {
 
     Chrono chrono = new Chrono();
-    boolean ChronoStarted;
     boolean ChronoPaused;
     
     @FXML
@@ -85,72 +84,66 @@ public class FXMLDocumentController implements Initializable {
     
     
     AnimationTimer timer = new AnimationTimer() {
-    private long timestamp;
-    private long time = 0;
-    private long fraction = 0;
+        private long timestamp;
+        private long time = 0;
+        private long fraction = 0;
 
-    @Override
-    public void start() {
-        // current time adjusted by remaining time from last run
-        timestamp = System.currentTimeMillis() - fraction;
-        super.start();
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
-        // save leftover time not handled with the last update
-        fraction = System.currentTimeMillis() - timestamp;
-    }
-
-    @Override
-    public void handle(long now) {
-        long newTime = System.currentTimeMillis();
-        if (timestamp + 1000 <= newTime) {
-            long deltaT = (newTime - timestamp) / 1000;
-            time += deltaT;
-            timestamp += 1000 * deltaT;
-            
-            long sec = time % 60;
-            long min = time / 60;
-            String temps="";
-            
-            if(min<10){
-                temps += "0";
-            }
-            temps += Long.toString(min);
-            temps += ":";
-            if(sec<10){
-                temps += "0";
-            }
-            temps += Long.toString(sec);
-            
-            labelTemps.setText(temps);
+        @Override
+        public void start() {
+            // current time adjusted by remaining time from last run
+            timestamp = System.currentTimeMillis() - fraction;
+            super.start();
         }
-    }
-};
+
+        @Override
+        public void stop() {
+            super.stop();
+            // save leftover time not handled with the last update
+            fraction = System.currentTimeMillis() - timestamp;
+        }
+
+        @Override
+        public void handle(long now) {
+            long newTime = System.currentTimeMillis();
+            if (timestamp + 1000 <= newTime) {
+                long deltaT = (newTime - timestamp) / 1000;
+                time += deltaT;
+                timestamp += 1000 * deltaT;
+
+                long sec = time % 60;
+                long min = time / 60;
+                String temps="";
+
+                if(min<10){
+                    temps += "0";
+                }
+                temps += Long.toString(min);
+                temps += ":";
+                if(sec<10){
+                    temps += "0";
+                }
+                temps += Long.toString(sec);
+
+                labelTemps.setText(temps);
+            }
+        }
+    };
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ChronoStarted = false;
-        ChronoPaused = false;
+        ChronoPaused = true;
     }    
 
     
     @FXML
     private void chronoPlayPause(MouseEvent event) {
-        if(!ChronoStarted){
-            ChronoStarted = true;
+        if(ChronoPaused){
             timer.start();
+            ChronoPaused = false;
         }else{
-            if(ChronoPaused){
-                timer.start();
-                ChronoPaused = false;
-            }else{
-                timer.stop();
-                ChronoPaused = true;
-            }
+            timer.stop();
+            ChronoPaused = true;
         }
         
     }
