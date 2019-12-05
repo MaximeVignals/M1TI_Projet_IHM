@@ -120,7 +120,6 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ChronoStarted = false;
         ChronoPaused = false;
-        timer.start();
     }    
 
     
@@ -141,8 +140,5 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
-    @FXML
-    private void chronoPlayPause(ActionEvent event) {
-    }
     
 }

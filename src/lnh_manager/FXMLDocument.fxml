@@ -108,19 +108,5 @@
             </TableView>
          </children>
       </AnchorPane>
-      <TabPane layoutY="-33.0" prefHeight="203.0" prefWidth="1298.0" tabClosingPolicy="UNAVAILABLE">
-         <tabs>
-            <Tab text="Statistiques championnat">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Match en direct">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-         </tabs>
-      </TabPane>
     </children>
 </AnchorPane>
