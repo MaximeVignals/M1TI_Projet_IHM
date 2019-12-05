@@ -7,6 +7,7 @@ package lnh_manager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,8 +24,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FXMLDocumentController implements Initializable {
 
-    Runnable chrono = new Chrono();
-    Thread tChrono = new Thread(chrono);
+    Chrono chrono = new Chrono();
     boolean ChronoStarted;
     boolean ChronoPaused;
     
@@ -84,28 +84,65 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<?, ?> col_Prenom_visitor_out;
     
     
+    AnimationTimer timer = new AnimationTimer() {
+    private long timestamp;
+    private long time = 0;
+    private long fraction = 0;
+
+    @Override
+    public void start() {
+        // current time adjusted by remaining time from last run
+        timestamp = System.currentTimeMillis() - fraction;
+        super.start();
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        // save leftover time not handled with the last update
+        fraction = System.currentTimeMillis() - timestamp;
+    }
+
+    @Override
+    public void handle(long now) {
+        long newTime = System.currentTimeMillis();
+        if (timestamp + 1000 <= newTime) {
+            long deltaT = (newTime - timestamp) / 1000;
+            time += deltaT;
+            timestamp += 1000 * deltaT;
+            labelTemps.setText(Long.toString(time));
+        }
+    }
+};
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ChronoStarted = false;
         ChronoPaused = false;
+        timer.start();
     }    
 
+    
     @FXML
-    private int chronoPlayPause(MouseEvent event) {
+    private void chronoPlayPause(MouseEvent event) {
         if(!ChronoStarted){
             ChronoStarted = true;
-            tChrono.start();
-            return 0;
-        }
-        if(ChronoPaused){
-            tChrono.resume();
-            ChronoPaused = false;
+            timer.start();
         }else{
-            tChrono.suspend();
-            ChronoPaused = true;
+            if(ChronoPaused){
+                timer.start();
+                ChronoPaused = false;
+            }else{
+                timer.stop();
+                ChronoPaused = true;
+            }
         }
-        return 0;
         
+    }
+
+    @FXML
+    private void chronoPlayPause(ActionEvent event) {
     }
     
 }
