@@ -110,7 +110,22 @@ public class FXMLDocumentController implements Initializable {
             long deltaT = (newTime - timestamp) / 1000;
             time += deltaT;
             timestamp += 1000 * deltaT;
-            labelTemps.setText(Long.toString(time));
+            
+            long sec = time % 60;
+            long min = time / 60;
+            String temps="";
+            
+            if(min<10){
+                temps += "0";
+            }
+            temps += Long.toString(min);
+            temps += ":";
+            if(sec<10){
+                temps += "0";
+            }
+            temps += Long.toString(sec);
+            
+            labelTemps.setText(temps);
         }
     }
 };
