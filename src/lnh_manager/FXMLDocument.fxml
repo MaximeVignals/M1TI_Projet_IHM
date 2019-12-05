@@ -40,7 +40,7 @@
       </AnchorPane>
       <AnchorPane fx:id="pane_center" layoutX="320.0" prefHeight="720.0" prefWidth="640.0">
          <children>
-            <Button fx:id="btn_startPause" layoutX="106.0" layoutY="109.0" mnemonicParsing="false" onAction="#chronoPlayPause" onMouseClicked="#chronoPlayPause" prefWidth="125.0" text="Lancer / Pause" />
+            <Button fx:id="btn_startPause" layoutX="106.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#chronoPlayPause" prefWidth="125.0" text="Lancer / Pause" />
             <Button fx:id="btn_reinitialiser" layoutX="409.0" layoutY="109.0" mnemonicParsing="false" prefWidth="125.0" text="Réinitialiser" />
             <Button fx:id="btn_tpsMort" layoutX="272.0" layoutY="109.0" mnemonicParsing="false" text="Temps-Mort" />
             <Label fx:id="label_score_home" alignment="CENTER" layoutX="14.0" layoutY="18.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
@@ -108,5 +108,19 @@
             </TableView>
          </children>
       </AnchorPane>
+      <TabPane layoutY="-33.0" prefHeight="203.0" prefWidth="1298.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Statistiques championnat">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Match en direct">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+         </tabs>
+      </TabPane>
     </children>
 </AnchorPane>
