@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lnh_manager.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lnh_manager.FXMLDocumentController">
     <children>
       <AnchorPane fx:id="pane_homeTeam" prefHeight="720.0" prefWidth="320.0">
          <children>
@@ -22,11 +24,10 @@
                   <TextField alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur 1" />
                </children></AnchorPane>
             <Separator layoutY="465.0" prefHeight="5.0" prefWidth="320.0" />
-            <TableView fx:id="table_home_team" layoutY="81.0" prefHeight="384.0" prefWidth="320.0">
+            <TableView fx:id="table_home_team" editable="true" layoutY="81.0" prefHeight="384.0" prefWidth="320.0">
               <columns>
                 <TableColumn fx:id="col_Nb_home" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" text="N°" />
-                <TableColumn fx:id="col_Nom_home" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" text="Nom" />
-                  <TableColumn fx:id="col_Prenom_home" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" text="Prénom" />
+                <TableColumn fx:id="col_Nom_home" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Nom" />
               </columns>
             </TableView>
             <TableView fx:id="table_home_team_out" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">
@@ -95,8 +96,7 @@
             <TableView fx:id="table_visitor_team" layoutY="81.0" prefHeight="384.0" prefWidth="320.0">
                <columns>
                   <TableColumn fx:id="col_Nb_visitor" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" text="N°" />
-                  <TableColumn fx:id="col_Nom_visitor" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" text="Nom" />
-                  <TableColumn fx:id="col_Prenom_visitor" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" text="Prénom" />
+                  <TableColumn fx:id="col_Nom_visitor" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Nom" />
                </columns>
             </TableView>
             <TableView fx:id="table_visitor_team_out" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">

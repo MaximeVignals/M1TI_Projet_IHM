@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author mvignals
+ * @author Maxime Vignals
  */
 public class LNH_Manager extends Application {
     

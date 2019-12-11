@@ -8,13 +8,16 @@ package lnh_manager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -32,13 +35,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane pane_home_header;
     @FXML
-    private TableView<?> table_home_team;
+    private TableView<Player> table_home_team;
     @FXML
-    private TableColumn<?, ?> col_Nb_home;
+    private TableColumn<Player, String> col_Nb_home;
     @FXML
-    private TableColumn<?, ?> col_Nom_home;
-    @FXML
-    private TableColumn<?, ?> col_Prenom_home;
+    private TableColumn<Player, String> col_Nom_home;
     @FXML
     private AnchorPane pane_center;
     @FXML
@@ -56,13 +57,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane pane_visitor_header;
     @FXML
-    private TableView<?> table_visitor_team;
+    private TableView<Player> table_visitor_team;
     @FXML
-    private TableColumn<?, ?> col_Nb_visitor;
+    private TableColumn<Player, String> col_Nb_visitor;
     @FXML
-    private TableColumn<?, ?> col_Nom_visitor;
-    @FXML
-    private TableColumn<?, ?> col_Prenom_visitor;
+    private TableColumn<Player, String> col_Nom_visitor;
     @FXML
     private Label labelTemps;
     @FXML
@@ -133,8 +132,57 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ChronoPaused = true;
-    }    
+        initTables();
+    }       
 
+    private void initTables(){
+        initColumns();
+        fillTables();
+    }
+    
+    
+    //This function's purpose is to make the tables editable by clickling directly on the name or Id of a row.
+    private void initColumns(){
+        
+        col_Nb_home.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_Nom_home.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+        
+        col_Nb_home.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_Nb_home.setOnEditCommit(e->{
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setId(e.getNewValue());
+        });
+        
+        col_Nom_home.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_Nom_home.setOnEditCommit(e->{
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setNom(e.getNewValue());
+        });
+        
+        col_Nb_visitor.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_Nom_visitor.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+        
+        col_Nb_visitor.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_Nb_visitor.setOnEditCommit(e->{
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setId(e.getNewValue());
+        });
+        
+        col_Nom_visitor.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_Nom_visitor.setOnEditCommit(e->{
+            e.getTableView().getItems().get(e.getTablePosition().getRow()).setNom(e.getNewValue());
+        });
+    }
+    
+    
+    //This function is used to initialize the tables.
+    private void fillTables(){
+        ObservableList<Player> initData = FXCollections.observableArrayList();
+        
+        for(int i = 0; i<7;i++){
+            initData.add(new Player("Nom","ID"));
+        }
+        
+        table_home_team.setItems(initData);
+        table_visitor_team.setItems(initData);
+    }
     
     @FXML
     private void chronoPlayPause(MouseEvent event) {
