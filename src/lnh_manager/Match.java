@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lnh_manager.Players;
+package lnh_manager;
 
 import java.util.ArrayList;
+import lnh_manager.Events.Event;
+import lnh_manager.Players.Equipe;
+import lnh_manager.Players.Player;
 
 /**
  *
  * @author Maxime
  */
-public class Equipe {  
-    String trainer;
-    ArrayList <Player> teamIn = new ArrayList<>();
-    ArrayList <Player> teamOut = new ArrayList<>();
-/**
- *
- * @author Maxime
- */
-public class Equipe {
+public class Match {
+    ArrayList <Event> events = new ArrayList<>();
+    Equipe homeTeam;
+    Equipe visitorTeam;
+    
     
 }
