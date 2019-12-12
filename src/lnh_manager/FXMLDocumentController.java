@@ -7,7 +7,6 @@ package lnh_manager;
 
 import lnh_manager.Players.Player;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
@@ -23,8 +22,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
-import lnh_manager.Events.Event;
-import lnh_manager.Events.Faute;
 
 /**
  *
@@ -35,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
     boolean ChronoPaused;
     boolean tempsMort;
     long tempsMortDuration;
+    Match match;
     
     @FXML
     private AnchorPane pane_homeTeam;
@@ -247,7 +245,5 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void tempsMort(MouseEvent event) {
         tempsMort ^= true;
-    }
-
-    
+    } 
 }
