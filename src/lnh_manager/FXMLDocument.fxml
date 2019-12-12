@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lnh_manager.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lnh_manager.FXMLDocumentController">
     <children>
       <AnchorPane fx:id="pane_homeTeam" prefHeight="720.0" prefWidth="320.0">
          <children>
@@ -42,6 +42,37 @@
       </AnchorPane>
       <AnchorPane fx:id="pane_center" layoutX="320.0" prefHeight="720.0" prefWidth="640.0">
          <children>
+            <AnchorPane fx:id="pane_Timer" disable="true" layoutX="20.0" layoutY="6.0" opacity="0.0" prefHeight="154.0" prefWidth="604.0">
+               <children>
+                  <Label fx:id="labelTemps" alignment="CENTER" layoutX="214.0" layoutY="28.0" prefHeight="43.0" prefWidth="178.0" text="00:00">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_score_home" alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_score_visitor" alignment="CENTER" layoutX="508.0" layoutY="2.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="250.0" layoutY="3.0" prefHeight="25.0" prefWidth="105.0" text="Mi-Temps 1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="-1.0" layoutY="79.0" prefHeight="73.0" prefWidth="604.0" spacing="120.0">
+                     <children>
+                        <Button fx:id="btn_tpsMort1" mnemonicParsing="false" onMouseClicked="#tempsMort" text="Temps-Mort" />
+                        <Button fx:id="btn_startPause" mnemonicParsing="false" onMouseClicked="#chronoPlayPause" prefWidth="125.0" text="Lancer / Pause" />
+                        <Button fx:id="btn_tpsMort" mnemonicParsing="false" onMouseClicked="#tempsMort" text="Temps-Mort" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="154.0" layoutX="19.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="604.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fae10007" height="280.0" layoutX="233.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fa000009" height="280.0" layoutX="444.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
@@ -77,35 +108,13 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="pane_Timer" layoutX="20.0" layoutY="6.0" prefHeight="154.0" prefWidth="604.0">
+            <AnchorPane fx:id="pane_Start" layoutX="18.0" layoutY="6.0" prefHeight="154.0" prefWidth="604.0">
                <children>
-                  <Label fx:id="labelTemps" alignment="CENTER" layoutX="214.0" layoutY="28.0" prefHeight="43.0" prefWidth="178.0" text="00:00">
+                  <Button fx:id="btn_StartMatch" alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="45.0" mnemonicParsing="false" text="Démarrer match" textAlignment="CENTER">
                      <font>
-                        <Font size="35.0" />
+                        <Font size="30.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="label_score_home" alignment="CENTER" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="label_score_visitor" alignment="CENTER" layoutX="508.0" layoutY="2.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="250.0" layoutY="3.0" prefHeight="25.0" prefWidth="105.0" text="Mi-Temps 1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER" layoutX="-1.0" layoutY="79.0" prefHeight="73.0" prefWidth="604.0" spacing="120.0">
-                     <children>
-                        <Button fx:id="btn_tpsMort1" mnemonicParsing="false" onMouseClicked="#tempsMort" text="Temps-Mort" />
-                        <Button fx:id="btn_startPause" mnemonicParsing="false" onMouseClicked="#chronoPlayPause" prefWidth="125.0" text="Lancer / Pause" />
-                        <Button fx:id="btn_tpsMort" mnemonicParsing="false" onMouseClicked="#tempsMort" text="Temps-Mort" />
-                     </children>
-                  </HBox>
+                  </Button>
                </children>
             </AnchorPane>
          </children></AnchorPane>
