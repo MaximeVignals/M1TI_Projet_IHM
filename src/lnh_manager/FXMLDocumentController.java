@@ -28,7 +28,6 @@ import javafx.scene.shape.Rectangle;
  */
 public class FXMLDocumentController implements Initializable {
 
-    Chrono chrono = new Chrono();
     boolean ChronoPaused;
     boolean tempsMort;
     long tempsMortDuration;
