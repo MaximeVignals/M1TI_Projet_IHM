@@ -13,7 +13,7 @@ import lnh_manager.Players.Player;
  */
 public class Tir extends Event {
     int outcome;  // 0 But 1 Arrêt 2 Poteau 3 Tir raté
-    int position; // 
+    int position; //0 : aile gauche, 1 : arrière gauche, 2 : demi-centre, 3 : arrière droite, 4 : aile droite, 5 : pivot, 6 : gardien, 7 : jet de 7m
 
     public Tir(String temps, Player p, int outcome, int position) {
         this.timeEvent = temps;
