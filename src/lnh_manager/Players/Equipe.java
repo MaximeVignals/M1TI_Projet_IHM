@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lnh_manager;
+package lnh_manager.Players;
 
 /**
  *

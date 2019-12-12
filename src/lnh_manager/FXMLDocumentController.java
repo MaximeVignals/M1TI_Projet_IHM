@@ -5,6 +5,7 @@
  */
 package lnh_manager;
 
+import lnh_manager.Players.Player;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;

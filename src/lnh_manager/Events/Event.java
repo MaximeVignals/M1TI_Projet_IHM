@@ -6,7 +6,7 @@
  */
 package lnh_manager.Events;
 
-import lnh_manager.Player;
+import lnh_manager.Players.Player;
 
 /**
  *
