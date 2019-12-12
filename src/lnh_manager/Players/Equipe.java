@@ -5,10 +5,14 @@
  */
 package lnh_manager.Players;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Maxime
  */
-public class Equipe {
-    
+public class Equipe {  
+    String trainer;
+    ArrayList <Player> teamIn = new ArrayList<>();
+    ArrayList <Player> teamOut = new ArrayList<>();
 }

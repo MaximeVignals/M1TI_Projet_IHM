@@ -14,10 +14,9 @@ import lnh_manager.Players.Player;
 public class Faute extends Event {
     int type; //0 Faute 1 Carton Jaune 2 Carton Rouge 3 Carton Bleu 4 2 Minutes
 
-    public Faute(String temps, Player p, int type) {
+    public Faute(String timeEvent, Player playerEvent,int type) {
+        super(timeEvent, playerEvent);
         this.type = type;
-        this.playerEvent = p;
-        this.timeEvent = temps;
     }
 
     public int getType() {

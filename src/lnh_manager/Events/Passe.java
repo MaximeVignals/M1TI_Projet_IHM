@@ -14,11 +14,12 @@ import lnh_manager.Players.Player;
 public class Passe extends Event{
     Player joueurRecept;
 
-    public Passe(String temps, Player p, Player joueurRecept) {
+    public Passe(String timeEvent, Player playerEvent,Player joueurRecept) {
+        super(timeEvent, playerEvent);
         this.joueurRecept = joueurRecept;
-        this.playerEvent = p;
-        this.timeEvent = temps;
     }
+
+
 
     public Player getJoueurRecept() {
         return joueurRecept;
