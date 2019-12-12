@@ -30,6 +30,8 @@ public class FXMLDocumentController implements Initializable {
 
     Chrono chrono = new Chrono();
     boolean ChronoPaused;
+    boolean tempsMort;
+    long tempsMortDuration;
     
     @FXML
     private AnchorPane pane_homeTeam;
@@ -104,41 +106,45 @@ public class FXMLDocumentController implements Initializable {
             long newTime = System.currentTimeMillis();
             if (timestamp + 1000 <= newTime) {
                 long deltaT = (newTime - timestamp) / 1000;
-                time += deltaT;
                 timestamp += 1000 * deltaT;
+                
+                if(tempsMort){
+                    tempsMortDuration += deltaT;
+                    System.out.println(tempsMortDuration);
+                }else{
+                    time += deltaT;
+                    long sec = time % 60;
+                    long min = time / 60;
+                    String temps="";
+                    if(min<10){
+                        temps += "0";
+                    }
+                    temps += Long.toString(min);
+                    temps += ":";
+                    if(sec<10){
+                        temps += "0";
+                    }
+                    temps += Long.toString(sec);
 
-                long sec = time % 60;
-                long min = time / 60;
-                String temps="";
-
-                if(min<10){
-                    temps += "0";
+                    labelTemps.setText(temps);
                 }
-                temps += Long.toString(min);
-                temps += ":";
-                if(sec<10){
-                    temps += "0";
-                }
-                temps += Long.toString(sec);
 
-                labelTemps.setText(temps);
             }
         }
     };
-
-    
-    
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tempsMort = false;
         ChronoPaused = true;
         initTables();
     }       
 
+    //Function used to initialize tables property and fill them with temp data.
     private void initTables(){
         initColumns();
         fillTables();
     }
-    
     
     //This function's purpose is to make the tables editable by clickling directly on the name or Id of a row.
     private void initColumns(){
@@ -233,6 +239,11 @@ public class FXMLDocumentController implements Initializable {
             ChronoPaused = true;
         }
         
+    }
+
+    @FXML
+    private void tempsMort(MouseEvent event) {
+        tempsMort ^= true;
     }
 
     

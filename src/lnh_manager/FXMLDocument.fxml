@@ -47,7 +47,7 @@
             <Rectangle fx:id="rec_HomeTeam" arcHeight="5.0" arcWidth="5.0" fill="#0068fa07" height="280.0" layoutX="18.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
             <Button fx:id="btn_startPause" layoutX="106.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#chronoPlayPause" prefWidth="125.0" text="Lancer / Pause" />
             <Button fx:id="btn_reinitialiser" layoutX="409.0" layoutY="109.0" mnemonicParsing="false" prefWidth="125.0" text="Réinitialiser" />
-            <Button fx:id="btn_tpsMort" layoutX="272.0" layoutY="109.0" mnemonicParsing="false" text="Temps-Mort" />
+            <Button fx:id="btn_tpsMort" layoutX="272.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#tempsMort" text="Temps-Mort" />
             <Label fx:id="label_score_home" alignment="CENTER" layoutX="14.0" layoutY="18.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
                <font>
                   <Font size="40.0" />
