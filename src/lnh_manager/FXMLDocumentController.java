@@ -49,8 +49,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btn_startPause;
     @FXML
-    private Button btn_reinitialiser;
-    @FXML
     private Button btn_tpsMort;
     @FXML
     private Label label_score_home;
@@ -82,7 +80,11 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Player, String> col_Nom_visitor_out;
     @FXML
     private Rectangle rec_HomeTeam;
-    
+    @FXML
+    private Button btn_tpsMort1;
+    @FXML
+    private AnchorPane pane_Timer;
+
     AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
         private long time = 0;
@@ -132,6 +134,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     };
+
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
