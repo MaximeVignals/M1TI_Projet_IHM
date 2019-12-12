@@ -15,10 +15,5 @@ public class Equipe {
     String trainer;
     ArrayList <Player> teamIn = new ArrayList<>();
     ArrayList <Player> teamOut = new ArrayList<>();
-/**
- *
- * @author Maxime
- */
-public class Equipe {
     
 }
