@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lnh_manager.FXMLDocumentController">
+    <children>
+      <AnchorPane fx:id="pane_homeTeam" prefHeight="720.0" prefWidth="320.0">
+         <children>
+            <AnchorPane fx:id="pane_home_header" prefHeight="5.0" prefWidth="320.0">
+               <children>
+                  <TextField alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Equipe 1">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </TextField>
+                  <TextField alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur 1" />
+               </children></AnchorPane>
+            <Separator layoutY="465.0" prefHeight="5.0" prefWidth="320.0" />
+            <TableView fx:id="table_home_team" editable="true" layoutY="81.0" prefHeight="384.0" prefWidth="320.0">
+              <columns>
+                <TableColumn fx:id="col_Nb_home" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" sortable="false" text="N°" />
+                <TableColumn fx:id="col_Nom_home" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+              </columns>
+            </TableView>
+            <TableView fx:id="table_home_team_out" editable="true" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">
+               <columns>
+                  <TableColumn fx:id="col_Nb_home_out" prefWidth="33.0" sortable="false" text="N°" />
+                  <TableColumn fx:id="col_Nom_home_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane_center" layoutX="320.0" prefHeight="720.0" prefWidth="640.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="154.0" layoutX="19.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="604.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fae10007" height="280.0" layoutX="233.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fa000009" height="280.0" layoutX="444.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
+            <Rectangle fx:id="rec_HomeTeam" arcHeight="5.0" arcWidth="5.0" fill="#0068fa07" height="280.0" layoutX="18.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
+            <Separator layoutY="464.0" prefWidth="640.0" />
+            <Button layoutX="48.0" layoutY="247.0" mnemonicParsing="false" prefWidth="120.0" text="Tir" />
+            <Button layoutX="48.0" layoutY="293.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
+            <Button layoutX="474.0" layoutY="247.0" mnemonicParsing="false" prefWidth="120.0" text="Tir" />
+            <Button layoutX="473.0" layoutY="293.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
+            <Button layoutX="48.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
+            <Button layoutX="473.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
+            <TitledPane animated="false" layoutY="466.0" prefHeight="254.0" prefWidth="640.0" text="Historique des actions">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+            <Button layoutX="261.0" layoutY="247.0" mnemonicParsing="false" prefWidth="120.0" text="2 min" />
+            <Button layoutX="261.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Carton rouge" />
+            <Button layoutX="261.0" layoutY="293.0" mnemonicParsing="false" prefWidth="120.0" text="Carton jaune" />
+            <Button layoutX="261.0" layoutY="385.0" mnemonicParsing="false" prefWidth="120.0" text="Carton bleu" />
+            <Label layoutX="290.0" layoutY="192.0" prefHeight="19.0" prefWidth="69.0" text="Sanctions" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="48.0" layoutY="178.0" lineSpacing="2.0" prefHeight="48.0" prefWidth="120.0" text="Faits de jeu équipe locale" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="473.0" layoutY="178.0" prefHeight="48.0" prefWidth="125.0" text="Faits de jeu équipe visiteuse" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="20.0" layoutY="6.0" prefHeight="154.0" prefWidth="604.0">
+               <children>
+                  <Label fx:id="labelTemps" alignment="CENTER" layoutX="214.0" layoutY="28.0" prefHeight="43.0" prefWidth="178.0" text="00:00">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_score_home" alignment="CENTER" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_score_visitor" alignment="CENTER" layoutX="508.0" layoutY="2.0" prefHeight="42.0" prefWidth="96.0" text="0" textAlignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="250.0" layoutY="3.0" prefHeight="25.0" prefWidth="105.0" text="Mi-Temps 1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="-1.0" layoutY="79.0" prefHeight="73.0" prefWidth="604.0" spacing="120.0">
+                     <children>
+                        <Button fx:id="btn_tpsMort1" mnemonicParsing="false" onMouseClicked="#tempsMort" text="Temps-Mort" />
+                        <Button fx:id="btn_startPause" mnemonicParsing="false" onMouseClicked="#chronoPlayPause" prefWidth="125.0" text="Lancer / Pause" />
+                        <Button fx:id="btn_tpsMort" mnemonicParsing="false" onMouseClicked="#tempsMort" text="Temps-Mort" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <AnchorPane fx:id="pane_visitorTeam" layoutX="960.0" prefHeight="720.0" prefWidth="320.0">
+         <children>
+            <AnchorPane fx:id="pane_visitor_header" prefHeight="5.0" prefWidth="320.0">
+               <children>
+                  <TextField alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Equipe 2">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </TextField>
+                  <TextField alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur 2" />
+               </children>
+            </AnchorPane>
+            <Separator layoutY="465.0" prefHeight="5.0" prefWidth="320.0" />
+            <TableView fx:id="table_visitor_team" editable="true" layoutY="81.0" prefHeight="384.0" prefWidth="320.0">
+               <columns>
+                  <TableColumn fx:id="col_Nb_visitor" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" sortable="false" text="N°" />
+                  <TableColumn fx:id="col_Nom_visitor" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+               </columns>
+            </TableView>
+            <TableView fx:id="table_visitor_team_out" editable="true" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">
+               <columns>
+                  <TableColumn fx:id="col_Nb_visitor_out" prefWidth="33.0" sortable="false" text="N°" />
+                  <TableColumn fx:id="col_Nom_visitor_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

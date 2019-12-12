@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutY="250.0" prefHeight="23.0" prefWidth="634.0" spacing="30.0">
+         <children>
+            <Button mnemonicParsing="false" prefWidth="126.0" text="But" />
+            <Button mnemonicParsing="false" prefWidth="126.0" text="Arret du gardien" />
+            <Button mnemonicParsing="false" prefWidth="126.0" text="Poteau">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="126.0" text="Tir extérieur" />
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </HBox>
+   </children>
+</Pane>
