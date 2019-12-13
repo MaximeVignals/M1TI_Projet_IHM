@@ -271,6 +271,7 @@ public class FXMLDocumentController implements Initializable {
             e.getTableView().getItems().get(e.getTablePosition().getRow()).setNom(e.getNewValue());
         });
         
+
         //Equipe visitor - Equipe en jeu
         
         col_Nb_visitor.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -587,14 +588,18 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void sanctionHome(MouseEvent event) {
-        equipeSanction = 1;
-        gestionSanction();
+        if(!table_home_team.getSelectionModel().isEmpty()){
+            equipeSanction = 1;
+            gestionSanction();
+        }
     }
 
     @FXML
     private void sanctionVisitor(MouseEvent event) {
-        equipeSanction = 2;
-        gestionSanction();
+        if(!table_visitor_team.getSelectionModel().isEmpty()){
+            equipeSanction = 2;
+            gestionSanction();          
+        }
     }
     
     private void gestionSanction(){
@@ -620,10 +625,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cartonRouge(MouseEvent event) {
+        int nb;
         switch(equipeSanction){
             case 1:
+
+                nb = Integer.parseInt(table_home_team.getSelectionModel().getSelectedItem().getNbRouge());
+                nb++;
+                table_home_team.getItems().get(table_home_team.getSelectionModel().getSelectedIndex()).setNbRouge(Integer.toString(nb));
+                table_home_team.refresh();
                 break;
             case 2:
+                nb = Integer.parseInt(table_visitor_team.getSelectionModel().getSelectedItem().getNbRouge());
+                nb++;
+                table_visitor_team.getItems().get(table_visitor_team.getSelectionModel().getSelectedIndex()).setNbRouge(Integer.toString(nb));
+                table_visitor_team.refresh();
                 break;
         }
         btn_2min.setDisable(true);
@@ -634,10 +649,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cartonJaune(MouseEvent event) {
+        int nb;
         switch(equipeSanction){
             case 1:
+
+                nb = Integer.parseInt(table_home_team.getSelectionModel().getSelectedItem().getNbJaune());
+                nb++;
+                table_home_team.getItems().get(table_home_team.getSelectionModel().getSelectedIndex()).setNbJaune(Integer.toString(nb));
+                table_home_team.refresh();
                 break;
             case 2:
+                nb = Integer.parseInt(table_visitor_team.getSelectionModel().getSelectedItem().getNbJaune());
+                nb++;
+                table_visitor_team.getItems().get(table_visitor_team.getSelectionModel().getSelectedIndex()).setNbJaune(Integer.toString(nb));
+                table_visitor_team.refresh();
                 break;
         }
         btn_2min.setDisable(true);
