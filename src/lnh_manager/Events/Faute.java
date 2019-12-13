@@ -35,12 +35,27 @@ public class Faute extends Event {
     
     @Override
     public String toString(){
-        String s ="";
+        String s = timeEvent;
         
-        s+= this.timeEvent;
-        s+= " : Faute de ";
+        switch(type){
+            case 0:
+                s+= " : Faute de ";
+
+                break;
+            case 1:
+                s+= " : Carton Jaune pour ";
+                break;
+            case 2:
+                s+= " : Carton Rouge pour ";
+                break;
+            case 3:
+                s+= " : Carton Bleu pour ";
+                break;
+            case 4:
+                s+= " : Deux minutes pour ";
+                break;
+        }
         s+= this.playerEvent.getNom();
-        
         return s;
     }
    

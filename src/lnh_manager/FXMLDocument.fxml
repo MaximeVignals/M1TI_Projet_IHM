@@ -113,13 +113,13 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fa000009" height="280.0" layoutX="444.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
             <Rectangle fx:id="rec_HomeTeam" arcHeight="5.0" arcWidth="5.0" fill="#0068fa07" height="280.0" layoutX="18.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
             <Separator layoutY="464.0" prefWidth="640.0" />
-            <Button layoutX="48.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#tirHome" prefWidth="120.0" text="Tir" />
-            <Button layoutX="48.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#passeHome" prefWidth="120.0" text="Passe décisive" />
-            <Button layoutX="474.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#tirVisitor" prefWidth="120.0" text="Tir" />
-            <Button layoutX="473.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#passeVisitor" prefWidth="120.0" text="Passe décisive" />
-            <Button fx:id="btn_faute_home" layoutX="48.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
-            <Button fx:id="btn_faute_visitor" layoutX="473.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
-            <TitledPane animated="false" layoutY="466.0" prefHeight="254.0" prefWidth="640.0" text="Historique des actions">
+            <Button fx:id="btn_Tir_Home" layoutX="48.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#tirHome" prefWidth="120.0" text="Tir" />
+            <Button fx:id="btn_Passe_Home" layoutX="48.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#passeHome" prefWidth="120.0" text="Passe décisive" />
+            <Button fx:id="btn_Tir_Visitor" layoutX="474.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#tirVisitor" prefWidth="120.0" text="Tir" />
+            <Button fx:id="btn_Passe_Visitor" layoutX="473.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#passeVisitor" prefWidth="120.0" text="Passe décisive" />
+            <Button fx:id="btn_faute_home" layoutX="48.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#Faute_Home" prefWidth="120.0" text="Faute" />
+            <Button fx:id="btn_faute_visitor" layoutX="473.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#Faute_Visitor" prefWidth="120.0" text="Faute" />
+            <TitledPane animated="false" collapsible="false" layoutY="466.0" prefHeight="254.0" prefWidth="640.0" text="Historique des actions">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -190,8 +190,8 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <Button fx:id="btn_faute_home1" layoutX="48.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionHome" prefWidth="120.0" text="Sanction" />
-            <Button fx:id="btn_faute_home11" layoutX="473.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionVisitor" prefWidth="120.0" text="Sanction" />
+            <Button fx:id="btn_Sanction_Home" layoutX="48.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionHome" prefWidth="120.0" text="Sanction" />
+            <Button fx:id="btn_Sanction_Visitor" layoutX="473.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionVisitor" prefWidth="120.0" text="Sanction" />
          </children></AnchorPane>
       <AnchorPane fx:id="pane_visitorTeam" layoutX="960.0" prefHeight="720.0" prefWidth="320.0">
          <children>

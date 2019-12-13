@@ -35,6 +35,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lnh_manager.Events.Event;
+import lnh_manager.Events.Faute;
 import lnh_manager.Events.Passe;
 import lnh_manager.Events.Tir;
 import lnh_manager.Players.Equipe;
@@ -154,10 +155,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea eventTextArea;
     @FXML
-    private Button btn_faute_home1;
-    @FXML
-    private Button btn_faute_home11;
-    @FXML
     private TableColumn<Player, String> col_Jaune_Home;
     @FXML
     private TableColumn<Player, String> col_Rouge_Home;
@@ -173,6 +170,18 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Player, String> col_Jaune_Visitor_Out;
     @FXML
     private TableColumn<Player, String> col_Rouge_Visitor_out;
+    @FXML
+    private Button btn_Tir_Home;
+    @FXML
+    private Button btn_Passe_Home;
+    @FXML
+    private Button btn_Tir_Visitor;
+    @FXML
+    private Button btn_Passe_Visitor;
+    @FXML
+    private Button btn_Sanction_Home;
+    @FXML
+    private Button btn_Sanction_Visitor;
     
         AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
@@ -213,6 +222,7 @@ public class FXMLDocumentController implements Initializable {
                         tempsMortDuration = 0;
                         tempsMort = false;
                         btn_startPause.setDisable(false);
+                        toggleEvents();
                     }
                 }else{
                     time += deltaT;
@@ -235,8 +245,10 @@ public class FXMLDocumentController implements Initializable {
         }
     };
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        toggleEvents();
         tempsMort = false;
         ChronoPaused = true;
         initTables();
@@ -360,9 +372,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void chronoPlayPause(MouseEvent event) {
         if(ChronoPaused){
+            toggleEvents();
             timer.start();
             ChronoPaused = false;
         }else{
+            toggleEvents();
             timer.stop();
             ChronoPaused = true;
         }
@@ -410,6 +424,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void tempsMortHome(MouseEvent event) {
         if(tempsMortRestantHome !=0){
+            toggleEvents();
             tempsMort = true;
             btn_tpsMort_home.setDisable(true);
             btn_tpsMort_visitor.setDisable(true);
@@ -421,6 +436,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void tempsMortVisitor(MouseEvent event) {
         if(tempsMortRestantVisitor !=0){
+            toggleEvents();
             tempsMort = true;
             btn_tpsMort_home.setDisable(true);
             btn_tpsMort_visitor.setDisable(true);
@@ -549,16 +565,19 @@ public class FXMLDocumentController implements Initializable {
     private void entreeHome(MouseEvent event) {
         if(!table_home_team_out.getSelectionModel().isEmpty()){
             Player p = table_home_team_out.getSelectionModel().getSelectedItem();
+            if(Integer.parseInt(p.getNbRouge()) != 1){
+                table_home_team_out.getItems().remove(p);
+                table_home_team.getItems().add(p);
+            }
             table_home_team_out.getSelectionModel().clearSelection();
-            table_home_team_out.getItems().remove(p);
-            table_home_team.getItems().add(p);
+
         }
     }
 
     @FXML
     private void sortieHome(MouseEvent event) {
         if(!table_home_team.getSelectionModel().isEmpty()){
-            Player p = table_home_team_out.getSelectionModel().getSelectedItem();
+            Player p = table_home_team.getSelectionModel().getSelectedItem();
             table_home_team.getSelectionModel().clearSelection();
             table_home_team.getItems().remove(p);
             table_home_team_out.getItems().add(p);
@@ -569,9 +588,11 @@ public class FXMLDocumentController implements Initializable {
     private void entreeVisitor(MouseEvent event) {
         if(!table_visitor_team_out.getSelectionModel().isEmpty()){
             Player p = table_visitor_team_out.getSelectionModel().getSelectedItem();
+            if(Integer.parseInt(p.getNbRouge()) !=  1){
+                table_visitor_team_out.getItems().remove(p);
+                table_visitor_team.getItems().add(p);
+            }
             table_visitor_team_out.getSelectionModel().clearSelection();
-            table_visitor_team_out.getItems().remove(p);
-            table_visitor_team.getItems().add(p);
         }
     }
 
@@ -603,6 +624,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void gestionSanction(){
+        toggleEvents();
         btn_2min.setDisable(false);
         btn_carton_bleu.setDisable(false);
         btn_carton_jaune.setDisable(false);
@@ -617,6 +639,7 @@ public class FXMLDocumentController implements Initializable {
             case 2:
                 break;
         }
+        toggleEvents();
         btn_2min.setDisable(true);
         btn_carton_bleu.setDisable(true);
         btn_carton_jaune.setDisable(true);
@@ -626,21 +649,36 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void cartonRouge(MouseEvent event) {
         int nb;
+        Faute f;
+        Player p;
         switch(equipeSanction){
             case 1:
-
-                nb = Integer.parseInt(table_home_team.getSelectionModel().getSelectedItem().getNbRouge());
+                p = table_home_team.getSelectionModel().getSelectedItem();
+                nb = Integer.parseInt(p.getNbRouge());
                 nb++;
-                table_home_team.getItems().get(table_home_team.getSelectionModel().getSelectedIndex()).setNbRouge(Integer.toString(nb));
+                p.setNbRouge(Integer.toString(nb));
                 table_home_team.refresh();
+                f = new Faute(labelTemps.getText(), p, 2);
+                sortieHome(event);
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
             case 2:
-                nb = Integer.parseInt(table_visitor_team.getSelectionModel().getSelectedItem().getNbRouge());
+                p = table_visitor_team.getSelectionModel().getSelectedItem();
+                nb = Integer.parseInt(p.getNbRouge());
                 nb++;
-                table_visitor_team.getItems().get(table_visitor_team.getSelectionModel().getSelectedIndex()).setNbRouge(Integer.toString(nb));
+                p.setNbRouge(Integer.toString(nb));
                 table_visitor_team.refresh();
+                f = new Faute(labelTemps.getText(), p, 2);
+                sortieVisitor(event);
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
         }
+
+        toggleEvents();
         btn_2min.setDisable(true);
         btn_carton_bleu.setDisable(true);
         btn_carton_jaune.setDisable(true);
@@ -650,21 +688,33 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void cartonJaune(MouseEvent event) {
         int nb;
+        Faute f;
+        Player p;
         switch(equipeSanction){
             case 1:
-
-                nb = Integer.parseInt(table_home_team.getSelectionModel().getSelectedItem().getNbJaune());
+                p = table_home_team.getSelectionModel().getSelectedItem();
+                nb = Integer.parseInt(p.getNbJaune());
                 nb++;
-                table_home_team.getItems().get(table_home_team.getSelectionModel().getSelectedIndex()).setNbJaune(Integer.toString(nb));
-                table_home_team.refresh();
+                p.setNbJaune(Integer.toString(nb));
+                table_home_team.refresh(); 
+                f = new Faute(labelTemps.getText(), p, 1);
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
             case 2:
-                nb = Integer.parseInt(table_visitor_team.getSelectionModel().getSelectedItem().getNbJaune());
+                 p = table_visitor_team.getSelectionModel().getSelectedItem();
+                nb = Integer.parseInt(p.getNbJaune());
                 nb++;
-                table_visitor_team.getItems().get(table_visitor_team.getSelectionModel().getSelectedIndex()).setNbJaune(Integer.toString(nb));
+                p.setNbJaune(Integer.toString(nb));
                 table_visitor_team.refresh();
+                f = new Faute(labelTemps.getText(), p, 1);  
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
         }
+        toggleEvents();
         btn_2min.setDisable(true);
         btn_carton_bleu.setDisable(true);
         btn_carton_jaune.setDisable(true);
@@ -679,12 +729,48 @@ public class FXMLDocumentController implements Initializable {
             case 2:
                 break;
         }
+        toggleEvents();
         btn_2min.setDisable(true);
         btn_carton_bleu.setDisable(true);
         btn_carton_jaune.setDisable(true);
         btn_carton_rouge.setDisable(true);
     }
     
+
+
+    @FXML
+    private void Faute_Home(MouseEvent event) {
+        if(!table_home_team.getSelectionModel().isEmpty()){
+            Player p = table_home_team.getSelectionModel().getSelectedItem();
+            table_home_team.getSelectionModel().clearSelection();
+            Faute f = new Faute(labelTemps.getText(), p, 0);
+            events.add(f);
+            eventTextArea.appendText(f.toString());
+            eventTextArea.appendText("\n"); 
+        }
+    }
+
+    @FXML
+    private void Faute_Visitor(MouseEvent event) {
+        if(!table_visitor_team.getSelectionModel().isEmpty()){
+            Player p = table_visitor_team.getSelectionModel().getSelectedItem();
+            table_visitor_team.getSelectionModel().clearSelection();
+            Faute f = new Faute(labelTemps.getText(), p, 0);
+            events.add(f);
+            eventTextArea.appendText(f.toString());
+            eventTextArea.appendText("\n"); 
+        }
+    }
     
+    private void toggleEvents(){
+        btn_Tir_Home.setDisable(!btn_Tir_Home.isDisable());
+        btn_Tir_Visitor.setDisable(!btn_Tir_Visitor.isDisable());
+        btn_Passe_Home.setDisable(!btn_Passe_Home.isDisable());
+        btn_Passe_Visitor.setDisable(!btn_Passe_Visitor.isDisable());
+        btn_faute_home.setDisable(!btn_faute_home.isDisable());
+        btn_faute_visitor.setDisable(!btn_faute_visitor.isDisable());
+        btn_Sanction_Home.setDisable(!btn_Sanction_Home.isDisable());
+        btn_Sanction_Visitor.setDisable(!btn_Sanction_Visitor.isDisable());
+    }
     
 }
