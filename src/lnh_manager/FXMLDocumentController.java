@@ -5,14 +5,19 @@
  */
 package lnh_manager;
 
+import java.io.IOException;
 import lnh_manager.Players.Player;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -23,6 +28,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import lnh_manager.Events.Tir;
 import lnh_manager.Players.Equipe;
 
 /**
@@ -36,6 +44,7 @@ public class FXMLDocumentController implements Initializable {
     long tempsMortDuration;
     int tempsMortRestantHome = 2;
     int tempsMortRestantVisitor = 2;
+    int shootingTeam;
     Match match;
     
 
@@ -329,6 +338,53 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
+
+    @FXML
+    private void tirHome(MouseEvent event) throws IOException {
+      /*  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShootPanel.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
+         stage.setOnCloseRequest((EventHandler<WindowEvent>) new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent we) {
+                String iCanGetDataBeforeClose = controller.getData();
+                System.out.println(iCanGetDataBeforeClose);
+                // static class can be used aswell -> System.out.println(Context.getMyString());
+            }
+        });
+        shootingTeam = 1;*/
+    }
+
+    @FXML
+    private void tirVisitor(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShootPanel.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
+        shootingTeam = 2;
+    }
+
+    @FXML
+    private void passeHome(MouseEvent event) {
+    }
+
+    @FXML
+    private void passeVisitor(MouseEvent event) {
+    }
     
-        
+    public void gestionTir(int outcome, int position){
+        Player p = new Player();
+        switch(shootingTeam){
+            case 1:
+                p = table_home_team.getSelectionModel().getSelectedItem();
+                break;
+            case 2:
+                p = table_visitor_team.getSelectionModel().getSelectedItem();
+                break;
+        }
+        Tir t = new Tir(labelTemps.getText(), p, outcome, position);
+    }
 }

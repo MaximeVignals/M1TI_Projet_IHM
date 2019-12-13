@@ -3,34 +3,29 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lnh_manager.ShootController">
    <children>
       <HBox layoutY="433.0" prefHeight="23.0" prefWidth="634.0" spacing="30.0">
          <children>
-            <Button mnemonicParsing="false" prefWidth="126.0" text="But" />
-            <Button mnemonicParsing="false" prefWidth="126.0" text="Arret gardien" />
-            <Button mnemonicParsing="false" prefWidth="126.0" text="Poteau">
+            <Button fx:id="btnBut" mnemonicParsing="false" onMouseClicked="#but" prefWidth="126.0" text="But" />
+            <Button fx:id="btnArret" mnemonicParsing="false" onMouseClicked="#arret" prefWidth="126.0" text="Arret gardien" />
+            <Button fx:id="btnPoteau" mnemonicParsing="false" onMouseClicked="#poteau" prefWidth="126.0" text="Poteau">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="126.0" text="Tir extérieur" />
+            <Button fx:id="btnRate" mnemonicParsing="false" onMouseClicked="#rate" prefWidth="126.0" text="Tir extérieur" />
          </children>
          <padding>
             <Insets left="20.0" />
          </padding>
       </HBox>
-      <ImageView fitHeight="350.0" fitWidth="475.0" layoutX="107.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../tercage.png" />
-         </image>
-      </ImageView>
+      <ImageView fitHeight="350.0" fitWidth="475.0" layoutX="107.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
       <RadioButton layoutX="220.0" layoutY="35.0" mnemonicParsing="false">
          <font>
             <Font size="12.0" />

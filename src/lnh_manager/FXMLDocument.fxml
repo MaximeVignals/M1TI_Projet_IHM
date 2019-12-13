@@ -47,10 +47,10 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fa000009" height="280.0" layoutX="444.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
             <Rectangle fx:id="rec_HomeTeam" arcHeight="5.0" arcWidth="5.0" fill="#0068fa07" height="280.0" layoutX="18.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="178.0" />
             <Separator layoutY="464.0" prefWidth="640.0" />
-            <Button layoutX="48.0" layoutY="247.0" mnemonicParsing="false" prefWidth="120.0" text="Tir" />
-            <Button layoutX="48.0" layoutY="293.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
-            <Button layoutX="474.0" layoutY="247.0" mnemonicParsing="false" prefWidth="120.0" text="Tir" />
-            <Button layoutX="473.0" layoutY="293.0" mnemonicParsing="false" prefWidth="120.0" text="Passe décisive" />
+            <Button layoutX="48.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#tirHome" prefWidth="120.0" text="Tir" />
+            <Button layoutX="48.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#passeHome" prefWidth="120.0" text="Passe décisive" />
+            <Button layoutX="474.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#tirVisitor" prefWidth="120.0" text="Tir" />
+            <Button layoutX="473.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#passeVisitor" prefWidth="120.0" text="Passe décisive" />
             <Button layoutX="48.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
             <Button layoutX="473.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Faute" />
             <TitledPane animated="false" layoutY="466.0" prefHeight="254.0" prefWidth="640.0" text="Historique des actions">
