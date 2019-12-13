@@ -18,10 +18,14 @@ public class Match {
     ArrayList <Event> events = new ArrayList<>();
     Equipe homeTeam;
     Equipe visitorTeam;
+    int butHome;
+    int butVisitor;
 
     public Match(Equipe homeTeam, Equipe visitorTeam) {
         this.homeTeam = homeTeam;
         this.visitorTeam = visitorTeam;
+        butHome = 0;
+        butVisitor = 0;
     }
 
     public ArrayList<Event> getEvents() {

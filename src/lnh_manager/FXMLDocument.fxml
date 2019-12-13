@@ -44,7 +44,7 @@
                   <TableColumn fx:id="col_Nom_home_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                </columns>
             </TableView>
-            <Button fx:id="btn_entre_home" layoutX="38.0" layoutY="421.0" mnemonicParsing="false" text="Entrée">
+            <Button fx:id="btn_entre_home" layoutX="38.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeHome" text="Entrée">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
                      </image></ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_sortie_home" layoutX="195.0" layoutY="421.0" mnemonicParsing="false" text="Sortie">
+            <Button fx:id="btn_sortie_home" layoutX="195.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#sortieHome" text="Sortie">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -80,7 +80,7 @@
                         <Button mnemonicParsing="false" onMouseClicked="#tirRate" prefWidth="120.0" text="Tir extérieur" />
                      </children>
                   </HBox>
-                  <RadioButton layoutX="200.0" layoutY="26.0" mnemonicParsing="false">
+                  <RadioButton layoutX="200.0" layoutY="26.0" mnemonicParsing="false" selected="true">
                      <toggleGroup>
                         <ToggleGroup fx:id="cadre" />
                      </toggleGroup>
@@ -93,7 +93,7 @@
                   <RadioButton layoutX="200.0" layoutY="164.0" mnemonicParsing="false" toggleGroup="$cadre" />
                   <RadioButton layoutX="312.0" layoutY="164.0" mnemonicParsing="false" toggleGroup="$cadre" />
                   <RadioButton layoutX="421.0" layoutY="164.0" mnemonicParsing="false" toggleGroup="$cadre" />
-                  <RadioButton alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="45.0" layoutY="228.0" mnemonicParsing="false" textAlignment="CENTER">
+                  <RadioButton alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="45.0" layoutY="228.0" mnemonicParsing="false" selected="true" textAlignment="CENTER">
                      <toggleGroup>
                         <ToggleGroup fx:id="Position" />
                      </toggleGroup></RadioButton>
@@ -127,10 +127,10 @@
                      </children></AnchorPane>
               </content>
             </TitledPane>
-            <Button fx:id="btn_2min" layoutX="261.0" layoutY="247.0" mnemonicParsing="false" prefWidth="120.0" text="2 min" />
-            <Button fx:id="btn_carton_rouge" layoutX="261.0" layoutY="339.0" mnemonicParsing="false" prefWidth="120.0" text="Carton rouge" />
-            <Button fx:id="btn_carton_jaune" layoutX="261.0" layoutY="293.0" mnemonicParsing="false" prefWidth="120.0" text="Carton jaune" />
-            <Button fx:id="btn_carton_bleu" layoutX="261.0" layoutY="385.0" mnemonicParsing="false" prefWidth="120.0" text="Carton bleu" />
+            <Button fx:id="btn_2min" disable="true" layoutX="261.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#deuxMin" prefWidth="120.0" text="2 min" />
+            <Button fx:id="btn_carton_rouge" disable="true" layoutX="261.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#cartonRouge" prefWidth="120.0" text="Carton rouge" />
+            <Button fx:id="btn_carton_jaune" disable="true" layoutX="261.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#cartonJaune" prefWidth="120.0" text="Carton jaune" />
+            <Button fx:id="btn_carton_bleu" disable="true" layoutX="261.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#cartonBleu" prefWidth="120.0" text="Carton bleu" />
             <Label layoutX="290.0" layoutY="192.0" prefHeight="19.0" prefWidth="69.0" text="Sanctions" wrapText="true">
                <font>
                   <Font size="14.0" />
@@ -186,6 +186,8 @@
                   </HBox>
                </children>
             </AnchorPane>
+            <Button fx:id="btn_faute_home1" layoutX="48.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionHome" prefWidth="120.0" text="Sanction" />
+            <Button fx:id="btn_faute_home11" layoutX="473.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionVisitor" prefWidth="120.0" text="Sanction" />
          </children></AnchorPane>
       <AnchorPane fx:id="pane_visitorTeam" layoutX="960.0" prefHeight="720.0" prefWidth="320.0">
          <children>
@@ -212,7 +214,7 @@
                   <TableColumn fx:id="col_Nom_visitor_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                </columns>
             </TableView>
-            <Button fx:id="btn_entree_visitor" layoutX="39.0" layoutY="421.0" mnemonicParsing="false" text="Entrée">
+            <Button fx:id="btn_entree_visitor" layoutX="39.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeVisitor" text="Entrée">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -221,7 +223,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_sortie_visitor" layoutX="196.0" layoutY="421.0" mnemonicParsing="false" text="Sortie">
+            <Button fx:id="btn_sortie_visitor" layoutX="196.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#sortieVisitor" text="Sortie">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>

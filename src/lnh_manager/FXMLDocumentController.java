@@ -51,6 +51,9 @@ public class FXMLDocumentController implements Initializable {
     int tempsMortRestantHome = 2;
     int tempsMortRestantVisitor = 2;
     int shootingTeam;
+    int scoreHome;
+    int scoreVisitor;
+    int equipeSanction;
     Match match;
     ArrayList <Event> events = new ArrayList<>();
 
@@ -145,7 +148,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btn_sortie_visitor;
     
-    AnimationTimer timer = new AnimationTimer() {
+
+    @FXML
+    private ScrollPane scrollEvent;
+    @FXML
+    private TextArea eventTextArea;
+    @FXML
+    private Button btn_faute_home1;
+    @FXML
+    private Button btn_faute_home11;
+    
+    
+        AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
         private long time = 0;
         private long fraction = 0;
@@ -183,6 +197,7 @@ public class FXMLDocumentController implements Initializable {
                         }
                         tempsMortDuration = 0;
                         tempsMort = false;
+                        btn_startPause.setDisable(false);
                     }
                 }else{
                     time += deltaT;
@@ -204,11 +219,6 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     };
-    @FXML
-    private ScrollPane scrollEvent;
-    @FXML
-    private TextArea eventTextArea;
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tempsMort = false;
@@ -291,19 +301,24 @@ public class FXMLDocumentController implements Initializable {
     
     //This function is used to initialize the tables.
     private void fillTables(){
-        ObservableList<Player> initData = FXCollections.observableArrayList();
-        for(int i = 0; i<7;i++){
-            initData.add(new Player("Nom","Num"));
-        }
-        table_home_team.setItems(initData);
-        table_visitor_team.setItems(initData);
+        ObservableList<Player> initDataHome = FXCollections.observableArrayList();
+        ObservableList<Player> initDataVisitor = FXCollections.observableArrayList();
         
-       initData = FXCollections.observableArrayList();
+        for(int i = 0; i<7;i++){
+            initDataHome.add(new Player("Nom",Integer.toString(i+1)));
+            initDataVisitor.add(new Player("Nom",Integer.toString(i+1)));
+        }
+        table_home_team.setItems(initDataHome);
+        table_visitor_team.setItems(initDataVisitor);
+        
+       initDataHome = FXCollections.observableArrayList();
+       initDataVisitor = FXCollections.observableArrayList();
        for(int i = 0; i<5;i++){
-           initData.add(new Player("Nom","Num"));
+           initDataHome.add(new Player("Nom",Integer.toString(i+8)));
+           initDataVisitor.add(new Player("Nom",Integer.toString(i+8)));
        }
-       table_home_team_out.setItems(initData);
-       table_visitor_team_out.setItems(initData);
+       table_home_team_out.setItems(initDataHome);
+       table_visitor_team_out.setItems(initDataVisitor);
     }
     
     @FXML
@@ -336,7 +351,8 @@ public class FXMLDocumentController implements Initializable {
         textbox_Nom_Equipe_Visitor.setEditable(false);
         
         registerMatch();
-        
+        scoreHome = 0;
+        scoreVisitor = 0;
     }
     
     private void registerMatch(){
@@ -362,6 +378,7 @@ public class FXMLDocumentController implements Initializable {
             btn_tpsMort_home.setDisable(true);
             btn_tpsMort_visitor.setDisable(true);
             tempsMortRestantHome --;
+            btn_startPause.setDisable(true);
         }
     }
 
@@ -372,48 +389,56 @@ public class FXMLDocumentController implements Initializable {
             btn_tpsMort_home.setDisable(true);
             btn_tpsMort_visitor.setDisable(true);
             tempsMortRestantVisitor --;
+            btn_startPause.setDisable(true);
         }
 
     }
 
     @FXML
     private void tirHome(MouseEvent event) throws IOException {
-        pane_Tir.toFront();
-        pane_Tir.setOpacity(1);
-        pane_Tir.setDisable(false);
-        shootingTeam = 1;
+        if(!table_home_team.getSelectionModel().isEmpty()){
+            pane_Tir.toFront();
+            pane_Tir.setOpacity(1);
+            pane_Tir.setDisable(false);
+            shootingTeam = 1;
+        }
     }
 
     @FXML
     private void tirVisitor(MouseEvent event) throws IOException {
-        pane_Tir.toFront();
-        pane_Tir.setOpacity(1);
-        pane_Tir.setDisable(false);
-        shootingTeam = 2;
+        if(!table_visitor_team.getSelectionModel().isEmpty()){
+            pane_Tir.toFront();
+            pane_Tir.setOpacity(1);
+            pane_Tir.setDisable(false);
+            shootingTeam = 2;           
+        }
     }
 
     @FXML
     private void passeHome(MouseEvent event) {
-        Player p = table_home_team.getSelectionModel().getSelectedItem();
-        Passe passe = new Passe(labelTemps.getText(), p);
-        events.add(passe);
-        eventTextArea.appendText(passe.toString());
-        eventTextArea.appendText("\n");
-  
-        table_home_team.getSelectionModel().clearSelection();
-        System.out.println(passe.toString());
-        
+        if(!table_home_team.getSelectionModel().isEmpty()){
+            Player p = table_home_team.getSelectionModel().getSelectedItem();
+            Passe passe = new Passe(labelTemps.getText(), p);
+            events.add(passe);
+            eventTextArea.appendText(passe.toString());
+            eventTextArea.appendText("\n");
+
+            table_home_team.getSelectionModel().clearSelection();
+            System.out.println(passe.toString());
+        }
     }
 
     @FXML
     private void passeVisitor(MouseEvent event) {
-        Player p = table_visitor_team.getSelectionModel().getSelectedItem();
-        Passe passe = new Passe(labelTemps.getText(), p);
-        events.add(passe);
-        eventTextArea.appendText(passe.toString());
-        eventTextArea.appendText("\n");
-        table_visitor_team.getSelectionModel().clearSelection();
-        System.out.println(passe.toString());
+        if(!table_visitor_team.getSelectionModel().isEmpty()){
+            Player p = table_visitor_team.getSelectionModel().getSelectedItem();
+            Passe passe = new Passe(labelTemps.getText(), p);
+            events.add(passe);
+            eventTextArea.appendText(passe.toString());
+            eventTextArea.appendText("\n");
+            table_visitor_team.getSelectionModel().clearSelection();
+            System.out.println(passe.toString());      
+        }
     }
     
     public void gestionTir(int outcome, int position,int cadrage){
@@ -421,11 +446,17 @@ public class FXMLDocumentController implements Initializable {
         switch(shootingTeam){
             case 1:
                 p = table_home_team.getSelectionModel().getSelectedItem();
-                table_home_team.getSelectionModel().clearSelection();
+                if(outcome == 0){
+                    scoreHome ++;
+                    label_score_home.setText(Integer.toString(scoreHome));
+                }
                 break;
             case 2:
                 p = table_visitor_team.getSelectionModel().getSelectedItem();
-                table_visitor_team.getSelectionModel().clearSelection();
+               if(outcome == 0){
+                    scoreVisitor ++;
+                    label_score_visitor.setText(Integer.toString(scoreVisitor));
+                }
                 break;
         }
         
@@ -451,7 +482,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void tirArret(MouseEvent event) {
         int iCadre = cadre.getToggles().indexOf(cadre.getSelectedToggle())+1;
-        int iPosition = Position.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        int iPosition = Position.getToggles().indexOf(Position.getSelectedToggle())+1;
         gestionTir(1,iPosition,iCadre);
         pane_Tir.toBack();
         pane_Tir.setOpacity(0);
@@ -461,7 +492,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void tirPoteau(MouseEvent event) {
         int iCadre = cadre.getToggles().indexOf(cadre.getSelectedToggle())+1;
-        int iPosition = Position.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        int iPosition = Position.getToggles().indexOf(Position.getSelectedToggle())+1;
         gestionTir(2,iPosition,iCadre);
         pane_Tir.toBack();
         pane_Tir.setOpacity(0);
@@ -471,10 +502,89 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void tirRate(MouseEvent event) {
         int iCadre = cadre.getToggles().indexOf(cadre.getSelectedToggle())+1;
-        int iPosition = Position.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        int iPosition = Position.getToggles().indexOf(Position.getSelectedToggle())+1;
         gestionTir(3,iPosition,iCadre);
         pane_Tir.toBack();
         pane_Tir.setOpacity(0);
         pane_Tir.setDisable(true);
     }
+
+    @FXML
+    private void entreeHome(MouseEvent event) {
+        if(!table_home_team_out.getSelectionModel().isEmpty()){
+            Player p = table_home_team_out.getSelectionModel().getSelectedItem();
+            table_home_team_out.getSelectionModel().clearSelection();
+            table_home_team_out.getItems().remove(p);
+            table_home_team.getItems().add(p);
+        }
+    }
+
+    @FXML
+    private void sortieHome(MouseEvent event) {
+        if(!table_home_team.getSelectionModel().isEmpty()){
+            Player p = table_home_team_out.getSelectionModel().getSelectedItem();
+            table_home_team.getSelectionModel().clearSelection();
+            table_home_team.getItems().remove(p);
+            table_home_team_out.getItems().add(p);
+        }
+    }
+
+    @FXML
+    private void entreeVisitor(MouseEvent event) {
+        if(!table_visitor_team_out.getSelectionModel().isEmpty()){
+            Player p = table_visitor_team_out.getSelectionModel().getSelectedItem();
+            table_visitor_team_out.getSelectionModel().clearSelection();
+            table_visitor_team_out.getItems().remove(p);
+            table_visitor_team.getItems().add(p);
+        }
+    }
+
+    @FXML
+    private void sortieVisitor(MouseEvent event) {
+        if(!table_visitor_team.getSelectionModel().isEmpty()){
+            Player p = table_visitor_team.getSelectionModel().getSelectedItem();
+            table_visitor_team.getSelectionModel().clearSelection();
+            table_visitor_team.getItems().remove(p);
+            table_visitor_team_out.getItems().add(p);            
+        }
+
+    }
+
+    @FXML
+    private void sanctionHome(MouseEvent event) {
+        equipeSanction = 1;
+        gestionSanction();
+    }
+
+    @FXML
+    private void sanctionVisitor(MouseEvent event) {
+        equipeSanction = 2;
+        gestionSanction();
+    }
+    
+    private void gestionSanction(){
+        btn_2min.setDisable(false);
+        btn_carton_bleu.setDisable(false);
+        btn_carton_jaune.setDisable(false);
+        btn_carton_rouge.setDisable(false);
+    }
+
+    @FXML
+    private void deuxMin(MouseEvent event) {
+    }
+
+    @FXML
+    private void cartonRouge(MouseEvent event) {
+    }
+
+    @FXML
+    private void cartonJaune(MouseEvent event) {
+    }
+
+    @FXML
+    private void cartonBleu(MouseEvent event) {
+    }
+    
+    
+    
 }
