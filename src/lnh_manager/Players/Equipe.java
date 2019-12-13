@@ -15,5 +15,22 @@ public class Equipe {
     String trainer;
     ArrayList <Player> teamIn = new ArrayList<>();
     ArrayList <Player> teamOut = new ArrayList<>();
-    
+
+    public Equipe(String trainer) {
+        this.trainer = trainer;
+    }
+
+    public String getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(String trainer) {
+        this.trainer = trainer;
+    }
+    public void addTeamIn (Player p){
+        teamIn.add(p);
+    }
+    public void addTeamOut (Player p){
+        teamOut.add(p);
+    }
 }

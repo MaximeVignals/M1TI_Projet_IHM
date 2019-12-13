@@ -17,11 +17,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import lnh_manager.Players.Equipe;
 
 /**
  *
@@ -32,7 +34,11 @@ public class FXMLDocumentController implements Initializable {
     boolean ChronoPaused;
     boolean tempsMort;
     long tempsMortDuration;
+    int tempsMortRestantHome = 2;
+    int tempsMortRestantVisitor = 2;
     Match match;
+    
+
     
     @FXML
     private AnchorPane pane_homeTeam;
@@ -48,8 +54,6 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane pane_center;
     @FXML
     private Button btn_startPause;
-    @FXML
-    private Button btn_tpsMort;
     @FXML
     private Label label_score_home;
     @FXML
@@ -81,10 +85,24 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Rectangle rec_HomeTeam;
     @FXML
-    private Button btn_tpsMort1;
-    @FXML
     private AnchorPane pane_Timer;
-
+    @FXML
+    private AnchorPane pane_Start;
+    @FXML
+    private Button btn_StartMatch;
+    @FXML
+    private TextField textbox_Nom_Equipe_Home;
+    @FXML
+    private TextField textbox_Entraineur_Home;
+    @FXML
+    private TextField textbox_Nom_Equipe_Visitor;
+    @FXML
+    private TextField textbox_Entraineur_Visitor;
+    @FXML
+    private Button btn_tpsMort_home;
+    @FXML
+    private Button btn_tpsMort_visitor;
+ 
     AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
         private long time = 0;
@@ -114,6 +132,16 @@ public class FXMLDocumentController implements Initializable {
                 if(tempsMort){
                     tempsMortDuration += deltaT;
                     System.out.println(tempsMortDuration);
+                    if(tempsMortDuration >=5){
+                        if(tempsMortRestantHome!=0){
+                            btn_tpsMort_home.setDisable(false);
+                        }
+                        if(tempsMortRestantVisitor!=0){
+                            btn_tpsMort_visitor.setDisable(false);
+                        }
+                        tempsMortDuration = 0;
+                        tempsMort = false;
+                    }
                 }else{
                     time += deltaT;
                     long sec = time % 60;
@@ -134,8 +162,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     };
-
- 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tempsMort = false;
@@ -219,16 +246,16 @@ public class FXMLDocumentController implements Initializable {
     //This function is used to initialize the tables.
     private void fillTables(){
         ObservableList<Player> initData = FXCollections.observableArrayList();
-        
         for(int i = 0; i<7;i++){
-            initData.add(new Player("Nom","ID"));
+            initData.add(new Player("Nom","Num"));
         }
-        
         table_home_team.setItems(initData);
         table_visitor_team.setItems(initData);
         
-       initData.remove(5, 7);
-       
+       initData = FXCollections.observableArrayList();
+       for(int i = 0; i<5;i++){
+           initData.add(new Player("Nom","Num"));
+       }
        table_home_team_out.setItems(initData);
        table_visitor_team_out.setItems(initData);
     }
@@ -246,7 +273,62 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void tempsMort(MouseEvent event) {
-        tempsMort ^= true;
-    } 
+    private void startMatch(MouseEvent event) {
+        pane_Start.setDisable(true);
+        pane_Start.setOpacity(0);
+        pane_Timer.setDisable(false);
+        pane_Timer.setOpacity(1);
+        
+        table_home_team.setEditable(false);
+        table_home_team_out.setEditable(false);
+        table_visitor_team.setEditable(false);
+        table_visitor_team_out.setEditable(false);
+        
+        textbox_Entraineur_Home.setEditable(false);
+        textbox_Entraineur_Visitor.setEditable(false);
+        textbox_Nom_Equipe_Home.setEditable(false);
+        textbox_Nom_Equipe_Visitor.setEditable(false);
+        
+        registerMatch();
+        
+    }
+    
+    private void registerMatch(){
+        Equipe homeTeam = new Equipe(textbox_Entraineur_Home.getText());
+        Equipe visitorTeam = new Equipe(textbox_Entraineur_Visitor.getText());
+        
+        for(int i = 0; i<7;i++){
+            homeTeam.addTeamIn(table_home_team.getItems().get(i));
+            visitorTeam.addTeamIn(table_visitor_team.getItems().get(i));
+        }
+        for(int i = 0; i<5;i++){
+            homeTeam.addTeamOut(table_home_team_out.getItems().get(i));
+            visitorTeam.addTeamOut(table_visitor_team_out.getItems().get(i));
+        }
+        
+        match = new Match(homeTeam, visitorTeam);
+    }
+
+    @FXML
+    private void tempsMortHome(MouseEvent event) {
+        if(tempsMortRestantHome !=0){
+            tempsMort = true;
+            btn_tpsMort_home.setDisable(true);
+            btn_tpsMort_visitor.setDisable(true);
+            tempsMortRestantHome --;
+        }
+    }
+
+    @FXML
+    private void tempsMortVisitor(MouseEvent event) {
+        if(tempsMortRestantVisitor !=0){
+            tempsMort = true;
+            btn_tpsMort_home.setDisable(true);
+            btn_tpsMort_visitor.setDisable(true);
+            tempsMortRestantVisitor --;
+        }
+
+    }
+    
+        
 }

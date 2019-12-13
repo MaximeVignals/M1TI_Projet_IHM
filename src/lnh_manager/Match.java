@@ -18,6 +18,35 @@ public class Match {
     ArrayList <Event> events = new ArrayList<>();
     Equipe homeTeam;
     Equipe visitorTeam;
+
+    public Match(Equipe homeTeam, Equipe visitorTeam) {
+        this.homeTeam = homeTeam;
+        this.visitorTeam = visitorTeam;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+
+    public Equipe getHomeTeam() {
+        return homeTeam;
+    }
+
+    public void setHomeTeam(Equipe homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public Equipe getVisitorTeam() {
+        return visitorTeam;
+    }
+
+    public void setVisitorTeam(Equipe visitorTeam) {
+        this.visitorTeam = visitorTeam;
+    }
     
     
 }
