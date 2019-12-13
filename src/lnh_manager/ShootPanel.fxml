@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutY="433.0" prefHeight="23.0" prefWidth="634.0" spacing="30.0">
+         <children>
+            <Button mnemonicParsing="false" prefWidth="126.0" text="But" />
+            <Button mnemonicParsing="false" prefWidth="126.0" text="Arret gardien" />
+            <Button mnemonicParsing="false" prefWidth="126.0" text="Poteau">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="126.0" text="Tir extérieur" />
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </HBox>
+      <ImageView fitHeight="350.0" fitWidth="475.0" layoutX="107.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/tir.png" />
+         </image>
+      </ImageView>
+      <RadioButton layoutX="220.0" layoutY="35.0" mnemonicParsing="false" style="-fx-content-display: red;">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="394.0" layoutY="36.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="220.0" layoutY="148.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="394.0" layoutY="146.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="307.0" layoutY="35.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="307.0" layoutY="146.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="220.0" layoutY="88.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="394.0" layoutY="92.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton contentDisplay="GRAPHIC_ONLY" layoutX="86.0" layoutY="208.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="527.0" layoutY="208.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="132.0" layoutY="337.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="487.0" layoutY="337.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="307.0" layoutY="345.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="307.0" layoutY="316.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="308.0" layoutY="407.0" mnemonicParsing="false">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </RadioButton>
+   </children>
+</Pane>
