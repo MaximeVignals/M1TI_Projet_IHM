@@ -8,6 +8,7 @@ package lnh_manager;
 import java.io.IOException;
 import lnh_manager.Players.Player;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
@@ -30,6 +31,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import lnh_manager.Events.Event;
+import lnh_manager.Events.Passe;
 import lnh_manager.Events.Tir;
 import lnh_manager.Players.Equipe;
 
@@ -46,7 +49,7 @@ public class FXMLDocumentController implements Initializable {
     int tempsMortRestantVisitor = 2;
     int shootingTeam;
     Match match;
-    
+    ArrayList <Event> events = new ArrayList<>();
 
     
     @FXML
@@ -341,7 +344,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void tirHome(MouseEvent event) throws IOException {
-
     }
 
     @FXML
@@ -356,10 +358,21 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void passeHome(MouseEvent event) {
+        Player p = table_home_team.getSelectionModel().getSelectedItem();
+        Passe passe = new Passe(labelTemps.getText(), p);
+        events.add(passe);
+        table_home_team.getSelectionModel().clearSelection();
+        System.out.println(passe.toString());
+        
     }
 
     @FXML
     private void passeVisitor(MouseEvent event) {
+        Player p = table_visitor_team.getSelectionModel().getSelectedItem();
+        Passe passe = new Passe(labelTemps.getText(), p);
+        events.add(passe);
+        table_visitor_team.getSelectionModel().clearSelection();
+        System.out.println(passe.toString());
     }
     
     public void gestionTir(int outcome, int position){
