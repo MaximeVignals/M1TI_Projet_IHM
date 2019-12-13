@@ -157,7 +157,22 @@ public class FXMLDocumentController implements Initializable {
     private Button btn_faute_home1;
     @FXML
     private Button btn_faute_home11;
-    
+    @FXML
+    private TableColumn<Player, String> col_Jaune_Home;
+    @FXML
+    private TableColumn<Player, String> col_Rouge_Home;
+    @FXML
+    private TableColumn<Player, String> col_Jaune_Home_Out;
+    @FXML
+    private TableColumn<Player, String> col_Rouge_Home_Out;
+    @FXML
+    private TableColumn<Player, String> col_Jaune_Visitor;
+    @FXML
+    private TableColumn<Player, String> col_Rouge_Visitor;
+    @FXML
+    private TableColumn<Player, String> col_Jaune_Visitor_Out;
+    @FXML
+    private TableColumn<Player, String> col_Rouge_Visitor_out;
     
         AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
@@ -219,6 +234,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     };
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tempsMort = false;
@@ -240,6 +256,10 @@ public class FXMLDocumentController implements Initializable {
         
         col_Nb_home.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_Nom_home.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+        col_Jaune_Home.setCellValueFactory(new PropertyValueFactory<>("nbJaune"));
+        col_Jaune_Home.setEditable(false);
+        col_Rouge_Home.setCellValueFactory(new PropertyValueFactory<>("nbRouge"));
+        col_Rouge_Home.setEditable(false);
         
         col_Nb_home.setCellFactory(TextFieldTableCell.forTableColumn());
         col_Nb_home.setOnEditCommit(e->{
@@ -256,6 +276,11 @@ public class FXMLDocumentController implements Initializable {
         col_Nb_visitor.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_Nom_visitor.setCellValueFactory(new PropertyValueFactory<>("Nom"));
         
+        col_Jaune_Visitor.setCellValueFactory(new PropertyValueFactory<>("nbJaune"));
+        col_Jaune_Visitor.setEditable(false);
+        col_Rouge_Visitor.setCellValueFactory(new PropertyValueFactory<>("nbRouge"));
+        col_Rouge_Visitor.setEditable(false);
+        
         col_Nb_visitor.setCellFactory(TextFieldTableCell.forTableColumn());
         col_Nb_visitor.setOnEditCommit(e->{
             e.getTableView().getItems().get(e.getTablePosition().getRow()).setId(e.getNewValue());
@@ -267,6 +292,11 @@ public class FXMLDocumentController implements Initializable {
         });
         
         //Equipe home - Equipe sur le banc
+        
+        col_Jaune_Home_Out.setCellValueFactory(new PropertyValueFactory<>("nbJaune"));
+        col_Jaune_Home_Out.setEditable(false);
+        col_Rouge_Home_Out.setCellValueFactory(new PropertyValueFactory<>("nbRouge"));
+        col_Rouge_Home_Out.setEditable(false);
         
         col_Nb_home_out.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_Nom_home_out.setCellValueFactory(new PropertyValueFactory<>("Nom"));
@@ -285,6 +315,11 @@ public class FXMLDocumentController implements Initializable {
         
         col_Nb_visitor_out.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_Nom_visitor_out.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+        
+        col_Jaune_Visitor_Out.setCellValueFactory(new PropertyValueFactory<>("nbJaune"));
+        col_Jaune_Visitor_Out.setEditable(false);
+        col_Rouge_Visitor_out.setCellValueFactory(new PropertyValueFactory<>("nbRouge"));
+        col_Rouge_Visitor_out.setEditable(false);
         
         col_Nb_visitor_out.setCellFactory(TextFieldTableCell.forTableColumn());
         col_Nb_visitor_out.setOnEditCommit(e->{
@@ -571,18 +606,58 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void deuxMin(MouseEvent event) {
+        switch(equipeSanction){
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+        btn_2min.setDisable(true);
+        btn_carton_bleu.setDisable(true);
+        btn_carton_jaune.setDisable(true);
+        btn_carton_rouge.setDisable(true);
     }
 
     @FXML
     private void cartonRouge(MouseEvent event) {
+        switch(equipeSanction){
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+        btn_2min.setDisable(true);
+        btn_carton_bleu.setDisable(true);
+        btn_carton_jaune.setDisable(true);
+        btn_carton_rouge.setDisable(true);
     }
 
     @FXML
     private void cartonJaune(MouseEvent event) {
+        switch(equipeSanction){
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+        btn_2min.setDisable(true);
+        btn_carton_bleu.setDisable(true);
+        btn_carton_jaune.setDisable(true);
+        btn_carton_rouge.setDisable(true);
     }
 
     @FXML
     private void cartonBleu(MouseEvent event) {
+        switch(equipeSanction){
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+        btn_2min.setDisable(true);
+        btn_carton_bleu.setDisable(true);
+        btn_carton_jaune.setDisable(true);
+        btn_carton_rouge.setDisable(true);
     }
     
     

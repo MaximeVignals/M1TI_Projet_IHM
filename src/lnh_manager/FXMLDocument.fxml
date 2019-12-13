@@ -36,12 +36,16 @@
               <columns>
                 <TableColumn fx:id="col_Nb_home" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" sortable="false" text="N°" />
                 <TableColumn fx:id="col_Nom_home" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+                  <TableColumn fx:id="col_Jaune_Home" prefWidth="20.0" text="J" />
+                  <TableColumn fx:id="col_Rouge_Home" prefWidth="21.60003662109375" text="R" />
               </columns>
             </TableView>
             <TableView fx:id="table_home_team_out" editable="true" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">
                <columns>
                   <TableColumn fx:id="col_Nb_home_out" prefWidth="33.0" sortable="false" text="N°" />
                   <TableColumn fx:id="col_Nom_home_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+                  <TableColumn fx:id="col_Jaune_Home_Out" prefWidth="20.0" text="J" />
+                  <TableColumn fx:id="col_Rouge_Home_Out" prefWidth="21.60003662109375" text="R" />
                </columns>
             </TableView>
             <Button fx:id="btn_entre_home" layoutX="38.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeHome" text="Entrée">
@@ -206,12 +210,16 @@
                <columns>
                   <TableColumn fx:id="col_Nb_visitor" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" sortable="false" text="N°" />
                   <TableColumn fx:id="col_Nom_visitor" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+                  <TableColumn fx:id="col_Jaune_Visitor" prefWidth="21.60003662109375" text="J" />
+                  <TableColumn fx:id="col_Rouge_Visitor" prefWidth="21.60003662109375" text="R" />
                </columns>
             </TableView>
             <TableView fx:id="table_visitor_team_out" editable="true" layoutY="465.0" prefHeight="254.0" prefWidth="320.0">
                <columns>
                   <TableColumn fx:id="col_Nb_visitor_out" prefWidth="33.0" sortable="false" text="N°" />
                   <TableColumn fx:id="col_Nom_visitor_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
+                  <TableColumn fx:id="col_Jaune_Visitor_Out" prefWidth="21.60003662109375" text="J" />
+                  <TableColumn fx:id="col_Rouge_Visitor_out" prefWidth="21.60003662109375" text="R" />
                </columns>
             </TableView>
             <Button fx:id="btn_entree_visitor" layoutX="39.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeVisitor" text="Entrée">

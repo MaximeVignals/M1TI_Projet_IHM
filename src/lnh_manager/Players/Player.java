@@ -12,13 +12,14 @@ package lnh_manager.Players;
 public class Player {
     String Nom;
     String id;
-    int nbJaune, nbRouge;
+    String nbJaune, nbRouge;
+    int tempsDeuxMin;
 
     public Player(String Nom, String id) {
         this.Nom = Nom;
         this.id = id;
-        nbJaune = 0;
-        nbRouge = 0;
+        nbJaune = "0";
+        nbRouge = "0";
     }
     public Player(){
         this.Nom = "";
@@ -41,19 +42,19 @@ public class Player {
         this.id = id;
     }
 
-    public int getNbJaune() {
+    public String getNbJaune() {
         return nbJaune;
     }
 
-    public void setNbJaune(int nbJaune) {
+    public void setNbJaune(String nbJaune) {
         this.nbJaune = nbJaune;
     }
 
-    public int getNbRouge() {
+    public String getNbRouge() {
         return nbRouge;
     }
 
-    public void setNbRouge(int nbRouge) {
+    public void setNbRouge(String nbRouge) {
         this.nbRouge = nbRouge;
     }
     
