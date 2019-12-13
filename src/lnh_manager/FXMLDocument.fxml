@@ -41,7 +41,7 @@
                   <TableColumn fx:id="col_Nom_home_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                </columns>
             </TableView>
-            <Button layoutX="38.0" layoutY="421.0" mnemonicParsing="false" text="Entrée">
+            <Button fx:id="btn_entre_home" layoutX="38.0" layoutY="421.0" mnemonicParsing="false" text="Entrée">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,11 +49,11 @@
                      </image></ImageView>
                </graphic>
             </Button>
-            <Button layoutX="167.0" layoutY="427.0" mnemonicParsing="false" text="Entrée">
+            <Button fx:id="btn_sortie_home" layoutX="195.0" layoutY="421.0" mnemonicParsing="false" text="Sortie">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/entre.png" />
+                        <Image url="@img/sortie.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -167,6 +167,7 @@
                   <RadioButton layoutX="563.0" layoutY="430.0" mnemonicParsing="false" />
                   <RadioButton layoutX="307.0" layoutY="370.0" mnemonicParsing="false" />
                   <RadioButton layoutX="307.0" layoutY="409.0" mnemonicParsing="false" />
+                  <RadioButton layoutX="307.0" layoutY="92.0" mnemonicParsing="false" />
                </children></AnchorPane>
          </children></AnchorPane>
       <AnchorPane fx:id="pane_visitorTeam" layoutX="960.0" prefHeight="720.0" prefWidth="320.0">
@@ -194,6 +195,24 @@
                   <TableColumn fx:id="col_Nom_visitor_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                </columns>
             </TableView>
+            <Button fx:id="btn_entree_visitor" layoutX="39.0" layoutY="421.0" mnemonicParsing="false" text="Entrée">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/entre.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_sortie_visitor" layoutX="196.0" layoutY="421.0" mnemonicParsing="false" text="Sortie">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/sortie.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       
