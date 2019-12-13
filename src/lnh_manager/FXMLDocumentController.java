@@ -341,20 +341,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void tirHome(MouseEvent event) throws IOException {
-      /*  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShootPanel.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));  
-        stage.show();
-         stage.setOnCloseRequest((EventHandler<WindowEvent>) new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent we) {
-                String iCanGetDataBeforeClose = controller.getData();
-                System.out.println(iCanGetDataBeforeClose);
-                // static class can be used aswell -> System.out.println(Context.getMyString());
-            }
-        });
-        shootingTeam = 1;*/
+
     }
 
     @FXML
