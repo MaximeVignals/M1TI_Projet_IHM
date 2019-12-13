@@ -21,9 +21,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
@@ -115,6 +118,33 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btn_tpsMort_visitor;
  
+    @FXML
+    private Button btn_entre_home;
+    @FXML
+    private Button btn_sortie_home;
+    @FXML
+    private Button btn_faute_home;
+    @FXML
+    private Button btn_faute_visitor;
+    @FXML
+    private Button btn_2min;
+    @FXML
+    private Button btn_carton_rouge;
+    @FXML
+    private Button btn_carton_jaune;
+    @FXML
+    private Button btn_carton_bleu;
+    @FXML
+    private AnchorPane pane_Tir;
+    @FXML
+    private ToggleGroup cadre;
+    @FXML
+    private ToggleGroup Position;
+    @FXML
+    private Button btn_entree_visitor;
+    @FXML
+    private Button btn_sortie_visitor;
+    
     AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
         private long time = 0;
@@ -174,6 +204,10 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     };
+    @FXML
+    private ScrollPane scrollEvent;
+    @FXML
+    private TextArea eventTextArea;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -344,15 +378,17 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void tirHome(MouseEvent event) throws IOException {
+        pane_Tir.toFront();
+        pane_Tir.setOpacity(1);
+        pane_Tir.setDisable(false);
+        shootingTeam = 1;
     }
 
     @FXML
     private void tirVisitor(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ShootPanel.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));  
-        stage.show();
+        pane_Tir.toFront();
+        pane_Tir.setOpacity(1);
+        pane_Tir.setDisable(false);
         shootingTeam = 2;
     }
 
@@ -361,6 +397,9 @@ public class FXMLDocumentController implements Initializable {
         Player p = table_home_team.getSelectionModel().getSelectedItem();
         Passe passe = new Passe(labelTemps.getText(), p);
         events.add(passe);
+        eventTextArea.appendText(passe.toString());
+        eventTextArea.appendText("\n");
+  
         table_home_team.getSelectionModel().clearSelection();
         System.out.println(passe.toString());
         
@@ -371,20 +410,71 @@ public class FXMLDocumentController implements Initializable {
         Player p = table_visitor_team.getSelectionModel().getSelectedItem();
         Passe passe = new Passe(labelTemps.getText(), p);
         events.add(passe);
+        eventTextArea.appendText(passe.toString());
+        eventTextArea.appendText("\n");
         table_visitor_team.getSelectionModel().clearSelection();
         System.out.println(passe.toString());
     }
     
-    public void gestionTir(int outcome, int position){
+    public void gestionTir(int outcome, int position,int cadrage){
         Player p = new Player();
         switch(shootingTeam){
             case 1:
                 p = table_home_team.getSelectionModel().getSelectedItem();
+                table_home_team.getSelectionModel().clearSelection();
                 break;
             case 2:
                 p = table_visitor_team.getSelectionModel().getSelectedItem();
+                table_visitor_team.getSelectionModel().clearSelection();
                 break;
         }
-        Tir t = new Tir(labelTemps.getText(), p, outcome, position);
+        
+        Tir t = new Tir(outcome, position, cadrage, labelTemps.getText(), p);
+        
+        events.add(t);
+        eventTextArea.appendText(t.toString());
+        eventTextArea.appendText("\n");
+        System.out.println(t.toString());
+    }
+
+    @FXML
+    private void tirBut(MouseEvent event) {
+        int iCadre = cadre.getToggles().indexOf(cadre.getSelectedToggle());
+        int iPosition = Position.getToggles().indexOf(Position.getSelectedToggle());
+        
+        gestionTir(0,iPosition,iCadre);
+        pane_Tir.toBack();
+        pane_Tir.setOpacity(0);
+        pane_Tir.setDisable(true);
+    }
+
+    @FXML
+    private void tirArret(MouseEvent event) {
+        int iCadre = cadre.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        int iPosition = Position.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        gestionTir(1,iPosition,iCadre);
+        pane_Tir.toBack();
+        pane_Tir.setOpacity(0);
+        pane_Tir.setDisable(true);
+    }
+
+    @FXML
+    private void tirPoteau(MouseEvent event) {
+        int iCadre = cadre.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        int iPosition = Position.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        gestionTir(2,iPosition,iCadre);
+        pane_Tir.toBack();
+        pane_Tir.setOpacity(0);
+        pane_Tir.setDisable(true);
+    }
+
+    @FXML
+    private void tirRate(MouseEvent event) {
+        int iCadre = cadre.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        int iPosition = Position.getToggles().indexOf(cadre.getSelectedToggle())+1;
+        gestionTir(3,iPosition,iCadre);
+        pane_Tir.toBack();
+        pane_Tir.setOpacity(0);
+        pane_Tir.setDisable(true);
     }
 }
