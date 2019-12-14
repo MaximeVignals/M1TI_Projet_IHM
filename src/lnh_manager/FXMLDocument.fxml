@@ -46,6 +46,7 @@
                   <TableColumn fx:id="col_Nom_home_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                   <TableColumn fx:id="col_Jaune_Home_Out" prefWidth="20.0" text="J" />
                   <TableColumn fx:id="col_Rouge_Home_Out" prefWidth="21.60003662109375" text="R" />
+                  <TableColumn fx:id="col_twomins_home" prefWidth="92.80000305175781" text="TimeOut" />
                </columns>
             </TableView>
             <Button fx:id="btn_entre_home" layoutX="38.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeHome" text="Entrée">
@@ -220,6 +221,7 @@
                   <TableColumn fx:id="col_Nom_visitor_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                   <TableColumn fx:id="col_Jaune_Visitor_Out" prefWidth="21.60003662109375" text="J" />
                   <TableColumn fx:id="col_Rouge_Visitor_out" prefWidth="21.60003662109375" text="R" />
+                  <TableColumn fx:id="col_twomins_visitor" prefWidth="90.39990234375" text="TimeOut" />
                </columns>
             </TableView>
             <Button fx:id="btn_entree_visitor" layoutX="39.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeVisitor" text="Entrée">

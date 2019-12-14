@@ -20,6 +20,7 @@ public class Player {
         this.id = id;
         nbJaune = "0";
         nbRouge = "0";
+        tempsDeuxMin = 0;
     }
     public Player(){
         this.Nom = "";
@@ -56,6 +57,14 @@ public class Player {
 
     public void setNbRouge(String nbRouge) {
         this.nbRouge = nbRouge;
+    }
+
+    public int getTempsDeuxMin() {
+        return tempsDeuxMin;
+    }
+
+    public void setTempsDeuxMin(int tempsDeuxMin) {
+        this.tempsDeuxMin = tempsDeuxMin;
     }
     
 

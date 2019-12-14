@@ -57,6 +57,7 @@ public class FXMLDocumentController implements Initializable {
     int equipeSanction;
     Match match;
     ArrayList <Event> events = new ArrayList<>();
+    ArrayList <Player> twominList = new ArrayList<>();
 
     
     @FXML
@@ -185,7 +186,7 @@ public class FXMLDocumentController implements Initializable {
     
         AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
-        private long time = 0;
+        private long time = 1750;
         private long fraction = 0;
 
         @Override
@@ -240,10 +241,28 @@ public class FXMLDocumentController implements Initializable {
                     temps += Long.toString(sec);
 
                     labelTemps.setText(temps);
+                    if(time == 1800){
+                        this.stop();
+                        toggleEvents();
+                        ChronoPaused = true;
+                    }
+                    
+                    for(Player p : twominList){
+                        if(p.getTempsDeuxMin()>0){
+                            p.setTempsDeuxMin(p.getTempsDeuxMin() -1 );
+                            table_home_team_out.refresh();
+                            table_visitor_team_out.refresh();
+                        }
+                    }
                 }
+                
             }
         }
     };
+    @FXML
+    private TableColumn<Player, String> col_twomins_home;
+    @FXML
+    private TableColumn<Player, String> col_twomins_visitor;
 
 
     @Override
@@ -310,6 +329,8 @@ public class FXMLDocumentController implements Initializable {
         col_Jaune_Home_Out.setEditable(false);
         col_Rouge_Home_Out.setCellValueFactory(new PropertyValueFactory<>("nbRouge"));
         col_Rouge_Home_Out.setEditable(false);
+        col_twomins_home.setCellValueFactory(new PropertyValueFactory<>("tempsDeuxMin"));
+        col_twomins_home.setEditable(false);
         
         col_Nb_home_out.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_Nom_home_out.setCellValueFactory(new PropertyValueFactory<>("Nom"));
@@ -333,6 +354,9 @@ public class FXMLDocumentController implements Initializable {
         col_Jaune_Visitor_Out.setEditable(false);
         col_Rouge_Visitor_out.setCellValueFactory(new PropertyValueFactory<>("nbRouge"));
         col_Rouge_Visitor_out.setEditable(false);
+        
+        col_twomins_visitor.setCellValueFactory(new PropertyValueFactory<>("tempsDeuxMin"));
+        col_twomins_visitor.setEditable(false);
         
         col_Nb_visitor_out.setCellFactory(TextFieldTableCell.forTableColumn());
         col_Nb_visitor_out.setOnEditCommit(e->{
@@ -406,8 +430,13 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void registerMatch(){
-        Equipe homeTeam = new Equipe(textbox_Entraineur_Home.getText());
-        Equipe visitorTeam = new Equipe(textbox_Entraineur_Visitor.getText());
+        Equipe homeTeam = new Equipe(textbox_Entraineur_Home.getText(), textbox_Nom_Equipe_Home.getText());
+        Equipe visitorTeam = new Equipe(textbox_Entraineur_Visitor.getText(), textbox_Nom_Equipe_Visitor.getText());
+        
+        textbox_Entraineur_Home.setEditable(false);
+        textbox_Nom_Equipe_Home.setEditable(false);
+        textbox_Entraineur_Visitor.setEditable(false);
+        textbox_Nom_Equipe_Visitor.setEditable(false);
         
         for(int i = 0; i<7;i++){
             homeTeam.addTeamIn(table_home_team.getItems().get(i));
@@ -565,7 +594,7 @@ public class FXMLDocumentController implements Initializable {
     private void entreeHome(MouseEvent event) {
         if(!table_home_team_out.getSelectionModel().isEmpty()){
             Player p = table_home_team_out.getSelectionModel().getSelectedItem();
-            if(Integer.parseInt(p.getNbRouge()) != 1){
+            if(Integer.parseInt(p.getNbRouge()) != 1 && p.getTempsDeuxMin() == 0){
                 table_home_team_out.getItems().remove(p);
                 table_home_team.getItems().add(p);
             }
@@ -588,7 +617,7 @@ public class FXMLDocumentController implements Initializable {
     private void entreeVisitor(MouseEvent event) {
         if(!table_visitor_team_out.getSelectionModel().isEmpty()){
             Player p = table_visitor_team_out.getSelectionModel().getSelectedItem();
-            if(Integer.parseInt(p.getNbRouge()) !=  1){
+            if(Integer.parseInt(p.getNbRouge()) !=  1 && p.getTempsDeuxMin() == 0){
                 table_visitor_team_out.getItems().remove(p);
                 table_visitor_team.getItems().add(p);
             }
@@ -633,10 +662,28 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void deuxMin(MouseEvent event) {
+        Player p;
+        Faute f;
         switch(equipeSanction){
             case 1:
+                p = table_home_team.getSelectionModel().getSelectedItem();
+                p.setTempsDeuxMin(120);
+                f = new Faute(labelTemps.getText(), p, 4);
+                twominList.add(p);
+                sortieHome(event);
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
             case 2:
+                p = table_visitor_team.getSelectionModel().getSelectedItem();
+                p.setTempsDeuxMin(120);
+                f = new Faute(labelTemps.getText(), p, 4);
+                twominList.add(p);
+                sortieVisitor(event);
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
         }
         toggleEvents();
@@ -723,10 +770,23 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cartonBleu(MouseEvent event) {
+        int nb;
+        Faute f;
+        Player p;
         switch(equipeSanction){
             case 1:
+                p = table_home_team.getSelectionModel().getSelectedItem();
+                f = new Faute(labelTemps.getText(), p, 3);
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
             case 2:
+                p = table_visitor_team.getSelectionModel().getSelectedItem();
+                f = new Faute(labelTemps.getText(), p, 3);  
+                events.add(f);
+                eventTextArea.appendText(f.toString());
+                eventTextArea.appendText("\n");
                 break;
         }
         toggleEvents();

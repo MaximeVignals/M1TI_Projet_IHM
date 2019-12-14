@@ -12,11 +12,13 @@ import java.util.ArrayList;
  * @author Maxime
  */
 public class Equipe {  
+    String name;
     String trainer;
     ArrayList <Player> teamIn = new ArrayList<>();
     ArrayList <Player> teamOut = new ArrayList<>();
 
-    public Equipe(String trainer) {
+    public Equipe(String trainer, String name) {
+        this.name = name;
         this.trainer = trainer;
     }
 
