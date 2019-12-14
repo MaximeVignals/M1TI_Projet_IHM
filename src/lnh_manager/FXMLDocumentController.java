@@ -13,12 +13,8 @@ import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -32,8 +28,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lnh_manager.Events.Event;
 import lnh_manager.Events.Faute;
 import lnh_manager.Events.Passe;
@@ -183,10 +177,14 @@ public class FXMLDocumentController implements Initializable {
     private Button btn_Sanction_Home;
     @FXML
     private Button btn_Sanction_Visitor;
+    @FXML
+    private TableColumn<Player, String> col_twomins_home;
+    @FXML
+    private TableColumn<Player, String> col_twomins_visitor;
     
-        AnimationTimer timer = new AnimationTimer() {
+    AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
-        private long time = 1750;
+        private long time = 0;
         private long fraction = 0;
 
         @Override
@@ -259,10 +257,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     };
-    @FXML
-    private TableColumn<Player, String> col_twomins_home;
-    @FXML
-    private TableColumn<Player, String> col_twomins_visitor;
+
 
 
     @Override
@@ -594,7 +589,7 @@ public class FXMLDocumentController implements Initializable {
     private void entreeHome(MouseEvent event) {
         if(!table_home_team_out.getSelectionModel().isEmpty()){
             Player p = table_home_team_out.getSelectionModel().getSelectedItem();
-            if(Integer.parseInt(p.getNbRouge()) != 1 && p.getTempsDeuxMin() == 0){
+            if(Integer.parseInt(p.getNbRouge()) != 1 && p.getTempsDeuxMin() == 0 && table_home_team.getItems().size() <7){
                 table_home_team_out.getItems().remove(p);
                 table_home_team.getItems().add(p);
             }
@@ -617,7 +612,7 @@ public class FXMLDocumentController implements Initializable {
     private void entreeVisitor(MouseEvent event) {
         if(!table_visitor_team_out.getSelectionModel().isEmpty()){
             Player p = table_visitor_team_out.getSelectionModel().getSelectedItem();
-            if(Integer.parseInt(p.getNbRouge()) !=  1 && p.getTempsDeuxMin() == 0){
+            if(Integer.parseInt(p.getNbRouge()) !=  1 && p.getTempsDeuxMin() == 0 && table_visitor_team.getItems().size()<7){
                 table_visitor_team_out.getItems().remove(p);
                 table_visitor_team.getItems().add(p);
             }
@@ -795,9 +790,7 @@ public class FXMLDocumentController implements Initializable {
         btn_carton_jaune.setDisable(true);
         btn_carton_rouge.setDisable(true);
     }
-    
-
-
+   
     @FXML
     private void Faute_Home(MouseEvent event) {
         if(!table_home_team.getSelectionModel().isEmpty()){
