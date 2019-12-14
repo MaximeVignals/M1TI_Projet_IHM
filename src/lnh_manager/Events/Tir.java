@@ -13,12 +13,14 @@ import lnh_manager.Players.Player;
  */
 public class Tir extends Event {
     int outcome;  // 0 But 1 Arrêt 2 Poteau 3 Tir raté
-    int position; //0 : aile gauche, 1 : arrière gauche, 2 : demi-centre, 3 : arrière droite, 4 : aile droite, 5 : pivot, 6 : gardien, 7 : jet de 7m
+    int position; //0 : aile gauche, 1 : arrière gauche, 2 : demi-centre, 3 : arrière droite, 4 : aile droite, 5 : pivot, 6 : jet de 7m
+    int cadrage; 
 
-    public Tir(String timeEvent, Player playerEvent,int outcome, int position) {
+    public Tir(int outcome, int position, int cadrage, String timeEvent, Player playerEvent) {
         super(timeEvent, playerEvent);
         this.outcome = outcome;
         this.position = position;
+        this.cadrage = cadrage;
     }
 
 
@@ -31,10 +33,12 @@ public class Tir extends Event {
         return position;
     }
 
+    @Override
     public String getTimeEvent() {
         return timeEvent;
     }
 
+    @Override
     public Player getPlayerEvent() {
         return playerEvent;
     }
@@ -58,7 +62,12 @@ public class Tir extends Event {
                 s += "Tir non cadré de ";
                 break;
         } 
+        
         s += this.playerEvent.getNom();
+        
+        //TODO FAIRE UN SWITCH POUR REMPLIR LE TEXTE SELON LA POSITION
+        s += " depuis la position ";
+        s += position;
         return s;
     }   
     

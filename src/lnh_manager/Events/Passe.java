@@ -12,17 +12,9 @@ import lnh_manager.Players.Player;
  * @author Maxime
  */
 public class Passe extends Event{
-    Player joueurRecept;
 
-    public Passe(String timeEvent, Player playerEvent,Player joueurRecept) {
+    public Passe(String timeEvent, Player playerEvent) {
         super(timeEvent, playerEvent);
-        this.joueurRecept = joueurRecept;
-    }
-
-
-
-    public Player getJoueurRecept() {
-        return joueurRecept;
     }
 
     public String getTimeEvent() {
@@ -37,10 +29,8 @@ public class Passe extends Event{
     public String toString(){
         String s = "";
         s += this.timeEvent;
-        s += " : Passe de ";
+        s += " : Passe décisive de ";
         s += this.playerEvent.getNom();
-        s += " à ";
-        s += this.joueurRecept.getNom();
         
         return s;
     }
