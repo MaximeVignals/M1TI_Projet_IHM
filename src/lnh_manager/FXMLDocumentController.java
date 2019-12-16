@@ -186,7 +186,7 @@ public class FXMLDocumentController implements Initializable {
     
     AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
-        private long time = 1780;
+        private long time = 0;
         private long fraction = 0;
 
         @Override
@@ -686,6 +686,7 @@ public class FXMLDocumentController implements Initializable {
                 break;
         }
         toggleEvents();
+        chronoPlayPause(event);
         btn_2min.setDisable(true);
         btn_carton_bleu.setDisable(true);
         btn_carton_jaune.setDisable(true);
