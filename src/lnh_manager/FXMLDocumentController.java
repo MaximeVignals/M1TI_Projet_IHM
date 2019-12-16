@@ -686,6 +686,7 @@ public class FXMLDocumentController implements Initializable {
                 break;
         }
         toggleEvents();
+        chronoPlayPause(event);
         btn_2min.setDisable(true);
         btn_carton_bleu.setDisable(true);
         btn_carton_jaune.setDisable(true);
