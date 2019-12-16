@@ -24,12 +24,12 @@
          <children>
             <AnchorPane fx:id="pane_home_header" prefHeight="5.0" prefWidth="320.0">
                <children>
-                  <TextField fx:id="textbox_Nom_Equipe_Home" alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Equipe 1">
+                  <TextField fx:id="textbox_Nom_Equipe_Home" alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Locaux">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="textbox_Entraineur_Home" alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur 1" />
+                  <TextField fx:id="textbox_Entraineur_Home" alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur" />
                </children></AnchorPane>
             <Separator layoutY="465.0" prefHeight="5.0" prefWidth="320.0" />
             <TableView fx:id="table_home_team" editable="true" layoutY="81.0" prefHeight="340.0" prefWidth="320.0">
@@ -46,7 +46,7 @@
                   <TableColumn fx:id="col_Nom_home_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                   <TableColumn fx:id="col_Jaune_Home_Out" prefWidth="20.0" text="J" />
                   <TableColumn fx:id="col_Rouge_Home_Out" prefWidth="21.60003662109375" text="R" />
-                  <TableColumn fx:id="col_twomins_home" prefWidth="92.80000305175781" text="TimeOut" />
+                  <TableColumn fx:id="col_twomins_home" prefWidth="92.80000305175781" text="2 Mins" />
                </columns>
             </TableView>
             <Button fx:id="btn_entre_home" layoutX="38.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeHome" text="Entrée">
@@ -133,9 +133,9 @@
               </content>
             </TitledPane>
             <Button fx:id="btn_2min" disable="true" layoutX="261.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#deuxMin" prefWidth="120.0" text="2 min" />
-            <Button fx:id="btn_carton_rouge" disable="true" layoutX="261.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#cartonRouge" prefWidth="120.0" text="Carton rouge" />
-            <Button fx:id="btn_carton_jaune" disable="true" layoutX="261.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#cartonJaune" prefWidth="120.0" text="Carton jaune" />
-            <Button fx:id="btn_carton_bleu" disable="true" layoutX="261.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#cartonBleu" prefWidth="120.0" text="Carton bleu" />
+            <Button fx:id="btn_carton_rouge" disable="true" layoutX="261.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#cartonRouge" prefWidth="120.0" style="-fx-background-color: red;" text="Carton rouge" textFill="WHITE" />
+            <Button fx:id="btn_carton_jaune" disable="true" layoutX="261.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#cartonJaune" prefWidth="120.0" style="-fx-background-color: yellow;" text="Carton jaune" />
+            <Button fx:id="btn_carton_bleu" disable="true" layoutX="261.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#cartonBleu" prefWidth="120.0" style="-fx-background-color: blue;" text="Carton bleu" textFill="WHITE" />
             <Label layoutX="290.0" layoutY="192.0" prefHeight="19.0" prefWidth="69.0" text="Sanctions" wrapText="true">
                <font>
                   <Font size="14.0" />
@@ -151,15 +151,6 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="pane_Start" layoutX="18.0" layoutY="6.0" prefHeight="154.0" prefWidth="604.0">
-               <children>
-                  <Button fx:id="btn_StartMatch" alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#startMatch" text="Démarrer match" textAlignment="CENTER">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="pane_Timer" disable="true" layoutX="20.0" layoutY="6.0" opacity="0.0" prefHeight="154.0" prefWidth="604.0">
                <children>
                   <Label fx:id="labelTemps" alignment="CENTER" layoutX="214.0" layoutY="28.0" prefHeight="43.0" prefWidth="178.0" text="00:00">
@@ -177,7 +168,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="250.0" layoutY="3.0" prefHeight="25.0" prefWidth="105.0" text="Mi-Temps 1">
+                  <Label fx:id="label_mitemps" alignment="CENTER" layoutX="250.0" layoutY="3.0" prefHeight="25.0" prefWidth="105.0" text="Mi-Temps 1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -191,6 +182,20 @@
                   </HBox>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="pane_Start" layoutX="18.0" layoutY="6.0" prefHeight="154.0" prefWidth="604.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="64.0" layoutY="14.0" prefHeight="38.0" prefWidth="476.0" text="Inscrire les équipes dans les tableaux avant de lancer" textAlignment="CENTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btn_StartMatch" alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#startMatch" prefHeight="6.0" prefWidth="162.0" text="Démarrer match" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
             <Button fx:id="btn_Sanction_Home" layoutX="48.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionHome" prefWidth="120.0" text="Sanction" />
             <Button fx:id="btn_Sanction_Visitor" layoutX="473.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#sanctionVisitor" prefWidth="120.0" text="Sanction" />
          </children></AnchorPane>
@@ -198,12 +203,12 @@
          <children>
             <AnchorPane fx:id="pane_visitor_header" prefHeight="5.0" prefWidth="320.0">
                <children>
-                  <TextField fx:id="textbox_Nom_Equipe_Visitor" alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Equipe 2">
+                  <TextField fx:id="textbox_Nom_Equipe_Visitor" alignment="TOP_CENTER" layoutY="2.0" prefHeight="60.0" prefWidth="320.0" text="Visiteurs">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="textbox_Entraineur_Visitor" alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur 2" />
+                  <TextField fx:id="textbox_Entraineur_Visitor" alignment="CENTER" layoutY="55.0" prefHeight="19.0" prefWidth="320.0" text="Entraineur" />
                </children>
             </AnchorPane>
             <Separator layoutY="465.0" prefHeight="5.0" prefWidth="320.0" />
@@ -221,7 +226,7 @@
                   <TableColumn fx:id="col_Nom_visitor_out" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" sortable="false" text="Nom" />
                   <TableColumn fx:id="col_Jaune_Visitor_Out" prefWidth="21.60003662109375" text="J" />
                   <TableColumn fx:id="col_Rouge_Visitor_out" prefWidth="21.60003662109375" text="R" />
-                  <TableColumn fx:id="col_twomins_visitor" prefWidth="90.39990234375" text="TimeOut" />
+                  <TableColumn fx:id="col_twomins_visitor" prefWidth="90.39990234375" text="2 Mins" />
                </columns>
             </TableView>
             <Button fx:id="btn_entree_visitor" layoutX="39.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#entreeVisitor" text="Entrée">

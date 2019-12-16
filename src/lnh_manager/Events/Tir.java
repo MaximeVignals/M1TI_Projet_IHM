@@ -66,8 +66,30 @@ public class Tir extends Event {
         s += this.playerEvent.getNom();
         
         //TODO FAIRE UN SWITCH POUR REMPLIR LE TEXTE SELON LA POSITION
-        s += " depuis la position ";
-        s += position;
+        s += " depuis ";
+        switch(position){
+            case 0:
+                s+="l'aile gauche";
+                break;
+            case 1:
+                s+="l'arrière gauche";
+                break;
+            case 2:
+                s+="le centre";
+                break;
+            case 3:
+                s+="l'arrière droite";
+                break;
+            case 4:
+                s+="l'aile droite";
+                break;
+            case 5:
+                s+="la position de pivot";
+                break;
+            case 6:
+                s+="Jet de 7m";
+                break;
+        }
         return s;
     }   
     

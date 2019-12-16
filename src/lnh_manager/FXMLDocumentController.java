@@ -181,6 +181,8 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Player, String> col_twomins_home;
     @FXML
     private TableColumn<Player, String> col_twomins_visitor;
+    @FXML
+    private Label label_mitemps;
     
     AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
@@ -243,6 +245,7 @@ public class FXMLDocumentController implements Initializable {
                         this.stop();
                         toggleEvents();
                         ChronoPaused = true;
+                        label_mitemps.setText("Mi-temps 2");
                     }
                     
                     for(Player p : twominList){
@@ -257,6 +260,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     };
+
 
 
 
