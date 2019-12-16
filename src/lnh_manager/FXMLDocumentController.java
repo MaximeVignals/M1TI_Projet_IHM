@@ -186,7 +186,7 @@ public class FXMLDocumentController implements Initializable {
     
     AnimationTimer timer = new AnimationTimer() {
         private long timestamp;
-        private long time = 0;
+        private long time = 1780;
         private long fraction = 0;
 
         @Override
